@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 typedef enum {
-    GTScrollNavigationBarScrollingDown,
-    GTScrollNavigationBarScrollingUp
+    GTScrollNavigationBarScrolledDown,
+    GTScrollNavigationBarScrolledUp
 } GTScrollNavigationBarState;
 
 @interface GTScrollNavigationBar : UINavigationBar

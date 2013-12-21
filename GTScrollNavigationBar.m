@@ -8,6 +8,9 @@
 
 #import "GTScrollNavigationBar.h"
 
+#define kNavigationBarHeightPortrait 44.0f
+#define kNavigationBarHeightLandscape 32.0f
+
 @interface GTScrollNavigationBar () <UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) UIPanGestureRecognizer* panGesture;
@@ -86,10 +89,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     float alpha = (frame.origin.y - minY) / (maxY - minY);
     alpha = MAX(0.000001f, alpha);
     
-    if (deltaY < 0.0f)
-        self.scrollState = GTScrollNavigationBarScrollingDown;
-    else if (deltaY > 0.0f)
-        self.scrollState = GTScrollNavigationBarScrollingUp;
+    if (deltaY < 0.0f) {
+        self.scrollState = GTScrollNavigationBarScrolledDown;
+    } else if (deltaY > 0.0f) {
+        self.scrollState = GTScrollNavigationBarScrolledUp;
+    }
     
     CGPoint newContentOffset = self.scrollView.contentOffset;
     bool isAnimation = NO;
@@ -98,12 +102,12 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         gesture.state == UIGestureRecognizerStateCancelled)
     {
         CGFloat contentOffsetYDelta = 0.0f;
-        if (self.scrollState == GTScrollNavigationBarScrollingDown ) {
+        if (self.scrollState == GTScrollNavigationBarScrolledDown) {
             contentOffsetYDelta = maxY - frame.origin.y;
             frame.origin.y = maxY;
             alpha = 1.0f;
         }
-        else if (self.scrollState == GTScrollNavigationBarScrollingUp) {
+        else if (self.scrollState == GTScrollNavigationBarScrolledUp) {
             contentOffsetYDelta = minY - frame.origin.y;
             frame.origin.y = minY;
             alpha = 0.000001f;
@@ -140,11 +144,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     switch ([UIApplication sharedApplication].statusBarOrientation) {
         case UIInterfaceOrientationPortrait:
         case UIInterfaceOrientationPortraitUpsideDown:
-            return 44.0f;
+            return kNavigationBarHeightPortrait;
             break;
         case UIInterfaceOrientationLandscapeLeft:
         case UIInterfaceOrientationLandscapeRight:
-            return 30.0f;
+            return kNavigationBarHeightLandscape;
         default:
             break;
     };
@@ -158,8 +162,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         [UIView beginAnimations:@"GTScrollNavigationBarAnimation" context:nil];
     }
     
-    for (UIView* view in self.subviews)
-    {
+    for (UIView* view in self.subviews) {
         bool isBackgroundView = view == [self.subviews objectAtIndex:0];
         bool isViewHidden = view.hidden || view.alpha == 0.0f;
         if (isBackgroundView || isViewHidden)
