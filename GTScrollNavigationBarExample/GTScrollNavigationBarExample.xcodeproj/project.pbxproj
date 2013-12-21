@@ -15,7 +15,7 @@
 		B103F3921864A4D000B03CED /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B103F3911864A4D000B03CED /* AppDelegate.m */; };
 		B103F3941864A4D000B03CED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B103F3931864A4D000B03CED /* Images.xcassets */; };
 		B103F3BC1865208500B03CED /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B103F3BB1865208500B03CED /* DemoTableViewController.m */; };
-		B103F3C218658CBA00B03CED /* GTScrollNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B103F3C118658CBA00B03CED /* GTScrollNavigationBar.m */; };
+		B103F3C71865E45200B03CED /* GTScrollNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B103F3C61865E45200B03CED /* GTScrollNavigationBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +33,8 @@
 		B103F39A1864A4D000B03CED /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B103F3BA1865208500B03CED /* DemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTableViewController.h; sourceTree = "<group>"; };
 		B103F3BB1865208500B03CED /* DemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTableViewController.m; sourceTree = "<group>"; };
-		B103F3C018658CBA00B03CED /* GTScrollNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTScrollNavigationBar.h; path = ../GTScrollNavigationBar.h; sourceTree = "<group>"; };
-		B103F3C118658CBA00B03CED /* GTScrollNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTScrollNavigationBar.m; path = ../GTScrollNavigationBar.m; sourceTree = "<group>"; };
+		B103F3C51865E45200B03CED /* GTScrollNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTScrollNavigationBar.h; path = ../GTScrollNavigationBar/GTScrollNavigationBar.h; sourceTree = "<group>"; };
+		B103F3C61865E45200B03CED /* GTScrollNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTScrollNavigationBar.m; path = ../GTScrollNavigationBar/GTScrollNavigationBar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +107,8 @@
 		B103F3B31864ABAD00B03CED /* GTScrollNavigationBar */ = {
 			isa = PBXGroup;
 			children = (
-				B103F3C018658CBA00B03CED /* GTScrollNavigationBar.h */,
-				B103F3C118658CBA00B03CED /* GTScrollNavigationBar.m */,
+				B103F3C51865E45200B03CED /* GTScrollNavigationBar.h */,
+				B103F3C61865E45200B03CED /* GTScrollNavigationBar.m */,
 			);
 			name = GTScrollNavigationBar;
 			sourceTree = "<group>";
@@ -178,7 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B103F3BC1865208500B03CED /* DemoTableViewController.m in Sources */,
-				B103F3C218658CBA00B03CED /* GTScrollNavigationBar.m in Sources */,
+				B103F3C71865E45200B03CED /* GTScrollNavigationBar.m in Sources */,
 				B103F38E1864A4D000B03CED /* main.m in Sources */,
 				B103F3921864A4D000B03CED /* AppDelegate.m in Sources */,
 			);
