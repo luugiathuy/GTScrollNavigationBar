@@ -1,7 +1,7 @@
 GTScrollNavigationBar
 =====================
 
-An iOS7 scrollable UINavigationBar that follows a UIScrollView. This project was inspired by the navigation bar functionality seen in the Chrome, Facebook iOS and Instagram app.
+An iOS7 scrollable UINavigationBar that follows a UIScrollView. This project was inspired by the navigation bar functionality seen in the Chrome, Facebook and Instagram iOS app.
 
 ##Usage
 
