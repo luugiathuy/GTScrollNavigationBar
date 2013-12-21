@@ -3,6 +3,10 @@ GTScrollNavigationBar
 
 A scrollable UINavigationBar that follows a UIScrollView. This project was inspired by the navigation bar functionality seen in the Chrome, Facebook and Instagram iOS apps.
 
+=======
+
+![](http://luugiathuy.com/wp-content/uploads/2013/12/GTScrollUINavigationBar1.png)  &nbsp;  ![](http://luugiathuy.com/wp-content/uploads/2013/12/GTScrollUINavigationBar2.png)
+
 ##Usage
 
 Copy folder GTScrollNavigationBar to your project. In your app delegate, set up the navigation controller to use GTScrollNavigationBar
