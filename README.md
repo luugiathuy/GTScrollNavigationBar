@@ -5,7 +5,7 @@ A scrollable UINavigationBar that follows a UIScrollView. This project was inspi
 
 ##Usage
 
-In your app delegate, set up the navigation controller to use GTScrollNavigationBar
+Copy folder GTScrollNavigationBar to your project. In your app delegate, set up the navigation controller to use GTScrollNavigationBar
 ```
 #import "GTScrollNavigationBar.h"
 
