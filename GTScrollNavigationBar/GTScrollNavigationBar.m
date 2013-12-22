@@ -111,7 +111,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     
     CGRect frame = self.frame;
     float alpha = 1.0f;
-    CGFloat maxY = [self statusBarHeight];
+    CGFloat statusBarHeight = [self statusBarHeight];
+    CGFloat maxY = statusBarHeight;
     CGFloat minY = maxY - CGRectGetHeight(frame);
     
     bool isScrollingAndGestureEnded = (gesture.state == UIGestureRecognizerStateEnded ||
@@ -143,7 +144,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         frame.origin.y -= deltaY;
         frame.origin.y = MIN(maxY, MAX(frame.origin.y, minY));
         
-        alpha = (frame.origin.y - minY) / (maxY - minY);
+        alpha = (frame.origin.y - (minY + statusBarHeight)) / (maxY - (minY + statusBarHeight));
         alpha = MAX(0.000001f, alpha);
         
         [self setFrame:frame alpha:alpha animated:NO];
