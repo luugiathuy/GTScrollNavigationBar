@@ -9,13 +9,16 @@
 #import <UIKit/UIKit.h>
 
 typedef enum {
-    GTScrollNavigationBarScrolledDown,
-    GTScrollNavigationBarScrolledUp
+    GTScrollNavigationBarNone,
+    GTScrollNavigationBarScrollingDown,
+    GTScrollNavigationBarScrollingUp
 } GTScrollNavigationBarState;
 
 @interface GTScrollNavigationBar : UINavigationBar
 
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (assign, nonatomic) GTScrollNavigationBarState scrollState;
+
+- (void)resetToDefaultPosition:(BOOL)animated;
 
 @end

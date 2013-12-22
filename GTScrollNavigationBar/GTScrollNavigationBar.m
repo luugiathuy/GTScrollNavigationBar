@@ -40,17 +40,25 @@
 {
     _scrollView = scrollView;
     
-    self.lastContentOffsetY = scrollView.contentOffset.y;
+    CGRect defaultFrame = self.frame;
+    defaultFrame.origin.y = [self statusBarHeight];
+    [self setFrame:defaultFrame alpha:1.0f animated:NO];
     
-    CGRect frame = self.frame;
-    frame.origin.y = [self statusBarHeight];
-    
-    [self setFrame:frame andAlpha:1.0f andScrollViewOffset:scrollView.contentOffset animated:NO];
-    
+    // remove gesture from current panGesture's view
     if (self.panGesture.view) {
         [self.panGesture.view removeGestureRecognizer:self.panGesture];
     }
-    [scrollView addGestureRecognizer:self.panGesture];
+    
+    if (scrollView) {
+        [scrollView addGestureRecognizer:self.panGesture];
+    }
+}
+
+- (void)resetToDefaultPosition:(BOOL)animated
+{
+    CGRect frame = self.frame;
+    frame.origin.y = [self statusBarHeight];
+    [self setFrame:frame alpha:1.0f animated:NO];
 }
 
 #pragma mark - UIGestureRecognizerDelegate
@@ -63,7 +71,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 #pragma mark - panGesture handler
 - (void)handlePan:(UIPanGestureRecognizer*)gesture
 {
-    if (gesture.view != self.scrollView)
+    if (!self.scrollView || gesture.view != self.scrollView)
         return;
     
     CGFloat contentOffsetY = self.scrollView.contentOffset.y;
@@ -72,52 +80,55 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         return;
     
     if (gesture.state == UIGestureRecognizerStateBegan) {
+        self.scrollState = GTScrollNavigationBarNone;
         self.lastContentOffsetY = contentOffsetY;
         return;
     }
     
     CGFloat deltaY = contentOffsetY - self.lastContentOffsetY;
-    
-    CGRect frame = self.frame;
-    
-    CGFloat maxY = [self statusBarHeight];
-    CGFloat minY = maxY - [self defaultNavigationBarHeight];
-
-    frame.origin.y -= deltaY;
-    frame.origin.y = MIN(maxY, MAX(frame.origin.y, minY));
-    
-    float alpha = (frame.origin.y - minY) / (maxY - minY);
-    alpha = MAX(0.000001f, alpha);
-    
     if (deltaY < 0.0f) {
-        self.scrollState = GTScrollNavigationBarScrolledDown;
+        self.scrollState = GTScrollNavigationBarScrollingDown;
     } else if (deltaY > 0.0f) {
-        self.scrollState = GTScrollNavigationBarScrolledUp;
+        self.scrollState = GTScrollNavigationBarScrollingUp;
     }
     
-    CGPoint newContentOffset = self.scrollView.contentOffset;
-    bool isAnimation = NO;
+    CGRect frame = self.frame;
+    float alpha = 1.0f;
+    CGFloat maxY = [self statusBarHeight];
+    CGFloat minY = maxY - [self defaultNavigationBarHeight];
     
-    if (gesture.state == UIGestureRecognizerStateEnded ||
-        gesture.state == UIGestureRecognizerStateCancelled)
-    {
+    bool isScrollingAndGestureEnded = (gesture.state == UIGestureRecognizerStateEnded ||
+                                       gesture.state == UIGestureRecognizerStateCancelled) &&
+                                        (self.scrollState == GTScrollNavigationBarScrollingUp ||
+                                         self.scrollState == GTScrollNavigationBarScrollingDown);
+    if (isScrollingAndGestureEnded) {
         CGFloat contentOffsetYDelta = 0.0f;
-        if (self.scrollState == GTScrollNavigationBarScrolledDown) {
+        if (self.scrollState == GTScrollNavigationBarScrollingDown) {
             contentOffsetYDelta = maxY - frame.origin.y;
             frame.origin.y = maxY;
             alpha = 1.0f;
         }
-        else if (self.scrollState == GTScrollNavigationBarScrolledUp) {
+        else if (self.scrollState == GTScrollNavigationBarScrollingUp) {
             contentOffsetYDelta = minY - frame.origin.y;
             frame.origin.y = minY;
             alpha = 0.000001f;
         }
-        newContentOffset = CGPointMake(self.scrollView.contentOffset.x,
+        CGPoint newContentOffset = CGPointMake(self.scrollView.contentOffset.x,
                                        contentOffsetY - contentOffsetYDelta);
-        isAnimation = YES;
+        
+        [self setFrame:frame alpha:alpha animated:YES];
+        if (!self.scrollView.decelerating)
+            [self.scrollView setContentOffset:newContentOffset animated:YES];
     }
-    
-    [self setFrame:frame andAlpha:alpha andScrollViewOffset:newContentOffset animated:isAnimation];
+    else {
+        frame.origin.y -= deltaY;
+        frame.origin.y = MIN(maxY, MAX(frame.origin.y, minY));
+        
+        alpha = (frame.origin.y - minY) / (maxY - minY);
+        alpha = MAX(0.000001f, alpha);
+        
+        [self setFrame:frame alpha:alpha animated:NO];
+    }
     
     self.lastContentOffsetY = contentOffsetY;
 }
@@ -155,8 +166,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     return 0.0f;
 }
 
-- (void)setFrame:(CGRect)frame
-        andAlpha:(CGFloat)alpha andScrollViewOffset:(CGPoint)contentOffset animated:(BOOL)animated
+- (void)setFrame:(CGRect)frame alpha:(CGFloat)alpha animated:(BOOL)animated
 {
     if (animated) {
         [UIView beginAnimations:@"GTScrollNavigationBarAnimation" context:nil];
@@ -170,7 +180,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         view.alpha = alpha;
     }
     self.frame = frame;
-    self.scrollView.contentOffset = contentOffset;
     
     if (animated) {
         [UIView commitAnimations];
