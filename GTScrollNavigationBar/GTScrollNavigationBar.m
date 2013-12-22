@@ -86,13 +86,15 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 #pragma mark - panGesture handler
 - (void)handlePan:(UIPanGestureRecognizer*)gesture
 {
-    if (!self.scrollView || gesture.view != self.scrollView)
+    if (!self.scrollView || gesture.view != self.scrollView) {
         return;
+    }
     
     CGFloat contentOffsetY = self.scrollView.contentOffset.y;
     
-    if (contentOffsetY < 0.0f)
+    if (contentOffsetY < -self.scrollView.contentInset.top) {
         return;
+    }
     
     if (gesture.state == UIGestureRecognizerStateBegan) {
         self.scrollState = GTScrollNavigationBarNone;
