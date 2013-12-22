@@ -44,6 +44,14 @@
     navigationBar.scrollView = self.tableView;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    GTScrollNavigationBar* navigationBar = (GTScrollNavigationBar*)self.navigationController.navigationBar;
+    navigationBar.scrollView = nil;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

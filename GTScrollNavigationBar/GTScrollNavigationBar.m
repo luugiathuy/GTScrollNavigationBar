@@ -113,12 +113,14 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             frame.origin.y = minY;
             alpha = 0.000001f;
         }
-        CGPoint newContentOffset = CGPointMake(self.scrollView.contentOffset.x,
-                                       contentOffsetY - contentOffsetYDelta);
         
         [self setFrame:frame alpha:alpha animated:YES];
-        if (!self.scrollView.decelerating)
+        
+        if (!self.scrollView.decelerating) {
+            CGPoint newContentOffset = CGPointMake(self.scrollView.contentOffset.x,
+                                                   contentOffsetY - contentOffsetYDelta);
             [self.scrollView setContentOffset:newContentOffset animated:YES];
+        }
     }
     else {
         frame.origin.y -= deltaY;
