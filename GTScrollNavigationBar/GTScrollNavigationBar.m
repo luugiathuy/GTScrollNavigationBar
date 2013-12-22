@@ -1,15 +1,12 @@
 //
 //  GTScrollNavigationBar.m
-//  GTScrollNavigationBarExample
+//  GTScrollNavigationBar
 //
 //  Created by Luu Gia Thuy on 21/12/13.
 //  Copyright (c) 2013 Luu Gia Thuy. All rights reserved.
 //
 
 #import "GTScrollNavigationBar.h"
-
-#define kNavigationBarHeightPortrait 44.0f
-#define kNavigationBarHeightLandscape 32.0f
 
 @interface GTScrollNavigationBar () <UIGestureRecognizerDelegate>
 
@@ -113,7 +110,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     CGRect frame = self.frame;
     float alpha = 1.0f;
     CGFloat maxY = [self statusBarHeight];
-    CGFloat minY = maxY - [self defaultNavigationBarHeight];
+    CGFloat minY = maxY - CGRectGetHeight(frame);
     
     bool isScrollingAndGestureEnded = (gesture.state == UIGestureRecognizerStateEnded ||
                                        gesture.state == UIGestureRecognizerStateCancelled) &&
@@ -164,22 +161,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         case UIInterfaceOrientationLandscapeLeft:
         case UIInterfaceOrientationLandscapeRight:
             return CGRectGetWidth([UIApplication sharedApplication].statusBarFrame);
-        default:
-            break;
-    };
-    return 0.0f;
-}
-
-- (CGFloat)defaultNavigationBarHeight
-{
-    switch ([UIApplication sharedApplication].statusBarOrientation) {
-        case UIInterfaceOrientationPortrait:
-        case UIInterfaceOrientationPortraitUpsideDown:
-            return kNavigationBarHeightPortrait;
-            break;
-        case UIInterfaceOrientationLandscapeLeft:
-        case UIInterfaceOrientationLandscapeRight:
-            return kNavigationBarHeightLandscape;
         default:
             break;
     };
