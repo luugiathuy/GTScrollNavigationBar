@@ -32,8 +32,20 @@
         self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                   action:@selector(handlePan:)];
         self.panGesture.delegate = self;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(statusBarOrientationDidChange)
+                                                     name:UIApplicationDidChangeStatusBarOrientationNotification
+                                                   object:nil];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationDidChangeStatusBarOrientationNotification
+                                                  object:nil];
 }
 
 - (void)setScrollView:(UIScrollView*)scrollView
@@ -59,6 +71,12 @@
     CGRect frame = self.frame;
     frame.origin.y = [self statusBarHeight];
     [self setFrame:frame alpha:1.0f animated:NO];
+}
+
+#pragma mark - notification
+- (void)statusBarOrientationDidChange
+{
+    [self setFrame:self.frame alpha:1.0f animated:NO];
 }
 
 #pragma mark - UIGestureRecognizerDelegate
