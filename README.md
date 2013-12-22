@@ -22,6 +22,9 @@ in your view controller which has a UIScrollView, e.g. UITableViewController, as
 GTScrollNavigationBar* navigationBar = (GTScrollNavigationBar*)self.navigationController.navigationBar;
 navigationBar.scrollView = self.tableView;
 ```
-
+To unfollow a UIScrollView, simply set scrollView propery to nil
+```
+navigationBar.scrollView = nil
+```
 ##Contact
 [@luugiathuy](http://twitter.com/luugiathuy)
