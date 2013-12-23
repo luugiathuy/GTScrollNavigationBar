@@ -8,6 +8,8 @@
 
 #import "GTScrollNavigationBar.h"
 
+#define kNearZero 0.000001f
+
 @interface GTScrollNavigationBar () <UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) UIPanGestureRecognizer* panGesture;
@@ -125,7 +127,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     float alpha = 1.0f;
     CGFloat statusBarHeight = [self statusBarHeight];
     CGFloat maxY = statusBarHeight;
-    CGFloat minY = maxY - CGRectGetHeight(frame);
+    CGFloat minY = maxY - CGRectGetHeight(frame) + 1.0f;
+    // NOTE: plus 1px to prevent the navigation bar disappears in iOS < 7
     
     bool isScrollingAndGestureEnded = (gesture.state == UIGestureRecognizerStateEnded ||
                                        gesture.state == UIGestureRecognizerStateCancelled) &&
@@ -141,7 +144,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         else if (self.scrollState == GTScrollNavigationBarScrollingUp) {
             contentOffsetYDelta = minY - frame.origin.y;
             frame.origin.y = minY;
-            alpha = 0.000001f;
+            alpha = kNearZero;
         }
         
         [self setFrame:frame alpha:alpha animated:YES];
@@ -157,7 +160,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         frame.origin.y = MIN(maxY, MAX(frame.origin.y, minY));
         
         alpha = (frame.origin.y - (minY + statusBarHeight)) / (maxY - (minY + statusBarHeight));
-        alpha = MAX(0.000001f, alpha);
+        alpha = MAX(kNearZero, alpha);
         
         [self setFrame:frame alpha:alpha animated:NO];
     }
