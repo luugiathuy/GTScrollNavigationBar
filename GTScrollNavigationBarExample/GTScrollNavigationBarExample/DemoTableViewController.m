@@ -92,4 +92,10 @@
     [self.navigationController pushViewController:demoTableViewController animated:YES];
 }
 
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+{
+    GTScrollNavigationBar* navigationBar = (GTScrollNavigationBar*)self.navigationController.navigationBar;
+    [navigationBar resetToDefaultPosition:YES];
+}
+
 @end
