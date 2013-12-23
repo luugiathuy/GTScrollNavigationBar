@@ -7,6 +7,7 @@
 //
 
 #import "DemoTableViewController.h"
+#import "DemoWebViewController.h"
 #import "GTScrollNavigationBar.h"
 
 @interface DemoTableViewController ()
@@ -74,20 +75,31 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
-    int row = (int)indexPath.row + 1;
-    cell.textLabel.text = [NSString stringWithFormat:@"Item %i", row];
+    int row = (int)indexPath.row;
+    if (row==0) {
+        cell.textLabel.text = @"WebView Demo";
+    } else {
+        cell.textLabel.text = [NSString stringWithFormat:@"Item %i", row];
+    }
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DemoTableViewController* demoTableViewController = [[DemoTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    [self.navigationController pushViewController:demoTableViewController animated:YES];
+    int row = (int)indexPath.row;
+    if (row == 0) {
+        DemoWebViewController* demoWebViewController = [[DemoWebViewController alloc] init];
+        [self.navigationController pushViewController:demoWebViewController animated:YES];
+    } else {
+        DemoTableViewController* demoTableViewController = [[DemoTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        [self.navigationController pushViewController:demoTableViewController animated:YES];
+    }
 }
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView

@@ -16,6 +16,7 @@
 		B103F3941864A4D000B03CED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B103F3931864A4D000B03CED /* Images.xcassets */; };
 		B103F3BC1865208500B03CED /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B103F3BB1865208500B03CED /* DemoTableViewController.m */; };
 		B103F3C71865E45200B03CED /* GTScrollNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B103F3C61865E45200B03CED /* GTScrollNavigationBar.m */; };
+		B1714BAB186860F7006577EF /* DemoWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1714BAA186860F7006577EF /* DemoWebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		B103F3BB1865208500B03CED /* DemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTableViewController.m; sourceTree = "<group>"; };
 		B103F3C51865E45200B03CED /* GTScrollNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTScrollNavigationBar.h; path = ../GTScrollNavigationBar/GTScrollNavigationBar.h; sourceTree = "<group>"; };
 		B103F3C61865E45200B03CED /* GTScrollNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTScrollNavigationBar.m; path = ../GTScrollNavigationBar/GTScrollNavigationBar.m; sourceTree = "<group>"; };
+		B1714BA9186860F7006577EF /* DemoWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoWebViewController.h; sourceTree = "<group>"; };
+		B1714BAA186860F7006577EF /* DemoWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoWebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,8 @@
 				B103F3911864A4D000B03CED /* AppDelegate.m */,
 				B103F3BA1865208500B03CED /* DemoTableViewController.h */,
 				B103F3BB1865208500B03CED /* DemoTableViewController.m */,
+				B1714BA9186860F7006577EF /* DemoWebViewController.h */,
+				B1714BAA186860F7006577EF /* DemoWebViewController.m */,
 				B103F3931864A4D000B03CED /* Images.xcassets */,
 				B103F3881864A4D000B03CED /* Supporting Files */,
 			);
@@ -180,6 +185,7 @@
 				B103F3BC1865208500B03CED /* DemoTableViewController.m in Sources */,
 				B103F3C71865E45200B03CED /* GTScrollNavigationBar.m in Sources */,
 				B103F38E1864A4D000B03CED /* main.m in Sources */,
+				B1714BAB186860F7006577EF /* DemoWebViewController.m in Sources */,
 				B103F3921864A4D000B03CED /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

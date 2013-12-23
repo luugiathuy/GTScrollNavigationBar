@@ -124,7 +124,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }
     
     CGRect frame = self.frame;
-    float alpha = 1.0f;
+    CGFloat alpha = 1.0f;
     CGFloat statusBarHeight = [self statusBarHeight];
     CGFloat maxY = statusBarHeight;
     CGFloat minY = maxY - CGRectGetHeight(frame) + 1.0f;
@@ -191,6 +191,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         [UIView beginAnimations:@"GTScrollNavigationBarAnimation" context:nil];
     }
     
+    CGFloat offsetY = CGRectGetMinY(frame) - CGRectGetMinY(self.frame);
+    
     for (UIView* view in self.subviews) {
         bool isBackgroundView = view == [self.subviews objectAtIndex:0];
         bool isViewHidden = view.hidden || view.alpha == 0.0f;
@@ -199,6 +201,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         view.alpha = alpha;
     }
     self.frame = frame;
+    
+    CGRect parentViewFrame = self.scrollView.superview.frame;
+    parentViewFrame.origin.y += offsetY;
+    parentViewFrame.size.height -= offsetY;
+    self.scrollView.superview.frame = parentViewFrame;
     
     if (animated) {
         [UIView commitAnimations];
