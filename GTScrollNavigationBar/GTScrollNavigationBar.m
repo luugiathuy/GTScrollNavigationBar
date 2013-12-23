@@ -31,6 +31,10 @@
         self.panGesture.delegate = self;
         
         [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(applicationDidBecomeActive)
+                                                     name:UIApplicationDidBecomeActiveNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(statusBarOrientationDidChange)
                                                      name:UIApplicationDidChangeStatusBarOrientationNotification
                                                    object:nil];
@@ -40,6 +44,9 @@
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationDidBecomeActiveNotification
+                                                  object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIApplicationDidChangeStatusBarOrientationNotification
                                                   object:nil];
@@ -70,10 +77,15 @@
     [self setFrame:frame alpha:1.0f animated:NO];
 }
 
-#pragma mark - notification
+#pragma mark - notifications
 - (void)statusBarOrientationDidChange
 {
-    [self setFrame:self.frame alpha:1.0f animated:NO];
+    [self resetToDefaultPosition:NO];
+}
+
+- (void)applicationDidBecomeActive
+{
+    [self resetToDefaultPosition:NO];
 }
 
 #pragma mark - UIGestureRecognizerDelegate
