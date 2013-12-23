@@ -40,16 +40,14 @@
     [super viewWillAppear:animated];
     
     self.navigationItem.title = @"DemoScrollNavigationBar";
-    GTScrollNavigationBar* navigationBar = (GTScrollNavigationBar*)self.navigationController.navigationBar;
-    navigationBar.scrollView = self.tableView;
+    self.navigationController.scrollNavigationBar.scrollView = self.tableView;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
-    GTScrollNavigationBar* navigationBar = (GTScrollNavigationBar*)self.navigationController.navigationBar;
-    navigationBar.scrollView = nil;
+    self.navigationController.scrollNavigationBar.scrollView = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -94,8 +92,7 @@
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
 {
-    GTScrollNavigationBar* navigationBar = (GTScrollNavigationBar*)self.navigationController.navigationBar;
-    [navigationBar resetToDefaultPosition:YES];
+    [self.navigationController.scrollNavigationBar resetToDefaultPosition:YES];
 }
 
 @end

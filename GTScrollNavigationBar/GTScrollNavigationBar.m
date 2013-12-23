@@ -191,3 +191,14 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 }
 
 @end
+
+@implementation UINavigationController (GTScrollNavigationBarAdditions)
+
+@dynamic scrollNavigationBar;
+
+- (GTScrollNavigationBar*)scrollNavigationBar
+{
+    return (GTScrollNavigationBar*)self.navigationBar;
+}
+
+@end

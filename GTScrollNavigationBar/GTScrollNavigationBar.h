@@ -22,3 +22,9 @@ typedef enum {
 - (void)resetToDefaultPosition:(BOOL)animated;
 
 @end
+
+@interface UINavigationController (GTScrollNavigationBarAdditions)
+
+@property(strong, nonatomic, readonly) GTScrollNavigationBar *scrollNavigationBar;
+
+@end
