@@ -1,5 +1,4 @@
-GTScrollNavigationBar
-=====================
+#GTScrollNavigationBar
 
 A scrollable UINavigationBar that follows a UIScrollView. This project was inspired by the navigation bar functionality seen in the Chrome, Facebook and Instagram iOS apps.
 
@@ -7,24 +6,36 @@ A scrollable UINavigationBar that follows a UIScrollView. This project was inspi
 
 ![](http://luugiathuy.com/wp-content/uploads/2013/12/GTScrollUINavigationBar1.png)  &nbsp;  ![](http://luugiathuy.com/wp-content/uploads/2013/12/GTScrollUINavigationBar2.png)
 
-##Usage
+##Installation
+Add the `GTScrollNavigationBar` folder to your project. `GTScrollNavigationBar` uses ARC, so if you have a project that doesn't use ARC, just add the `-fobjc-arc` compiler flag to the `GTScrollNavigationBar` files.
 
-Copy folder GTScrollNavigationBar to your project. In your app delegate, set up the navigation controller to use GTScrollNavigationBar
-```
+##Usage
+Set up the navigation controller to use `GTScrollNavigationBar`:
+```objective-c
 #import "GTScrollNavigationBar.h"
 
 self.navController = [[UINavigationController alloc] initWithNavigationBarClass:[GTScrollNavigationBar class] 
                                                                    toolbarClass:nil];
+[self.navController setViewControllers:@[self.mainViewController] animated:NO];
 ```
 
-in your view controller which has a UIScrollView, e.g. UITableViewController, assign UIScrollView object to your navigation bar in ```viewWillAppear:```
+In your view controller which has a `UIScrollView`, e.g. `UITableViewController`, set the UIScrollView object to the `GTScrollNavigationBar` in `viewWillAppear:` by:
+```objective-c
+self.navigationController.scrollNavigationBar.scrollView = self.tableView;
 ```
-GTScrollNavigationBar* navigationBar = (GTScrollNavigationBar*)self.navigationController.navigationBar;
-navigationBar.scrollView = self.tableView;
+
+To unfollow the scrollView, simply set `scrollView` property to `nil`
+```objective-c
+self.navigationController.scrollNavigationBar.scrollView = nil;
 ```
-To unfollow a UIScrollView, simply set scrollView propery to nil
+
+Implement `scrollViewDidScrollToTop:` in the view controller to reset the navigation bar's position
+```objective-c
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+{
+    [self.navigationController.scrollNavigationBar resetToDefaultPosition:YES];
+}
 ```
-navigationBar.scrollView = nil;
-```
+
 ##Contact
 [@luugiathuy](http://twitter.com/luugiathuy)
