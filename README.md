@@ -7,6 +7,9 @@ A scrollable UINavigationBar that follows a UIScrollView. This project was inspi
 ![](http://luugiathuy.com/wp-content/uploads/2013/12/GTScrollUINavigationBar1.png)  &nbsp;  ![](http://luugiathuy.com/wp-content/uploads/2013/12/GTScrollUINavigationBar2.png)
 
 ##Installation
+###CocoaPods
+Add pod `GTScrollNavigationBar` to your Podfile.
+###Manually
 Add the `GTScrollNavigationBar` folder to your project. `GTScrollNavigationBar` uses ARC, so if you have a project that doesn't use ARC, just add the `-fobjc-arc` compiler flag to the `GTScrollNavigationBar` files.
 
 ##Usage
