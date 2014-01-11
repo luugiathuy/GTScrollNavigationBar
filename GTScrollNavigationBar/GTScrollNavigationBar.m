@@ -117,6 +117,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         return;
     }
     
+    if ( self.scrollView.frame.size.height + (self.bounds.size.height * 2) >= self.scrollView.contentSize.height) {
+        return;
+    }
+    
     CGFloat contentOffsetY = self.scrollView.contentOffset.y;
     
     if (contentOffsetY < -self.scrollView.contentInset.top) {
