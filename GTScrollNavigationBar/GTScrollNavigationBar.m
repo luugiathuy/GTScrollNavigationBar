@@ -20,30 +20,41 @@
 @implementation GTScrollNavigationBar
 
 @synthesize scrollView = _scrollView,
-scrollState = _scrollState,
-panGesture = _panGesture,
-lastContentOffsetY = _lastContentOffsetY;
+            scrollState = _scrollState,
+            panGesture = _panGesture,
+            lastContentOffsetY = _lastContentOffsetY;
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self
-                                                                  action:@selector(handlePan:)];
-        self.panGesture.delegate = self;
-        
-        self.keepSubviewsLayout = YES;
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(applicationDidBecomeActive)
-                                                     name:UIApplicationDidBecomeActiveNotification
-                                                   object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(statusBarOrientationDidChange)
-                                                     name:UIApplicationDidChangeStatusBarOrientationNotification
-                                                   object:nil];
+        [self setup];
     }
     return self;
+}
+
+- (void)setup
+{
+    self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                              action:@selector(handlePan:)];
+    self.panGesture.delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidBecomeActive)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(statusBarOrientationDidChange)
+                                                 name:UIApplicationDidChangeStatusBarOrientationNotification
+                                               object:nil];    
 }
 
 - (void)dealloc
@@ -102,7 +113,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 #pragma mark - panGesture handler
 - (void)handlePan:(UIPanGestureRecognizer*)gesture
 {
-    if (!self.scrollView || gesture.view != self.scrollView || self.scrollView.frame.size.height + (self.bounds.size.height * 2) >= self.scrollView.contentSize.height) {
+    if (!self.scrollView || gesture.view != self.scrollView) {
+        return;
+    }
+    
+    if ( self.scrollView.frame.size.height + (self.bounds.size.height * 2) >= self.scrollView.contentSize.height) {
         return;
     }
     
@@ -134,8 +149,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     
     bool isScrollingAndGestureEnded = (gesture.state == UIGestureRecognizerStateEnded ||
                                        gesture.state == UIGestureRecognizerStateCancelled) &&
-    (self.scrollState == GTScrollNavigationBarScrollingUp ||
-     self.scrollState == GTScrollNavigationBarScrollingDown);
+                                        (self.scrollState == GTScrollNavigationBarScrollingUp ||
+                                         self.scrollState == GTScrollNavigationBarScrollingDown);
     if (isScrollingAndGestureEnded) {
         CGFloat contentOffsetYDelta = 0.0f;
         if (self.scrollState == GTScrollNavigationBarScrollingDown) {
@@ -204,25 +219,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }
     self.frame = frame;
     
-    UIView *parentView = self.scrollView.superview;
-    
-    if (self.keepSubviewsLayout) {
-        
-        for (UIView *subview in parentView.subviews) {
-            if (![subview isEqual:self.scrollView]) {
-                CGRect subFrame = subview.frame;
-                if (self.scrollState != GTScrollNavigationBarNone) {
-                    subFrame.origin.y -= offsetY;
-                    subview.frame = subFrame;
-                }
-            }
-        }
-    }
-    
-    CGRect parentViewFrame = parentView.frame;
+    CGRect parentViewFrame = self.scrollView.superview.frame;
     parentViewFrame.origin.y += offsetY;
     parentViewFrame.size.height -= offsetY;
-    parentView.frame = parentViewFrame;
+    self.scrollView.superview.frame = parentViewFrame;
     
     if (animated) {
         [UIView commitAnimations];
