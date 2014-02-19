@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4EFA416918B44F9000C1AE0B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFA416818B44F9000C1AE0B /* ViewController.m */; };
 		B103F3821864A4D000B03CED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B103F3811864A4D000B03CED /* Foundation.framework */; };
 		B103F3841864A4D000B03CED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B103F3831864A4D000B03CED /* CoreGraphics.framework */; };
 		B103F3861864A4D000B03CED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B103F3851864A4D000B03CED /* UIKit.framework */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4EFA416718B44F9000C1AE0B /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		4EFA416818B44F9000C1AE0B /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B103F37E1864A4D000B03CED /* GTScrollNavigationBarExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTScrollNavigationBarExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B103F3811864A4D000B03CED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B103F3831864A4D000B03CED /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -88,6 +91,8 @@
 			children = (
 				B103F3901864A4D000B03CED /* AppDelegate.h */,
 				B103F3911864A4D000B03CED /* AppDelegate.m */,
+				4EFA416718B44F9000C1AE0B /* ViewController.h */,
+				4EFA416818B44F9000C1AE0B /* ViewController.m */,
 				B103F3BA1865208500B03CED /* DemoTableViewController.h */,
 				B103F3BB1865208500B03CED /* DemoTableViewController.m */,
 				B1714BA9186860F7006577EF /* DemoWebViewController.h */,
@@ -182,6 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EFA416918B44F9000C1AE0B /* ViewController.m in Sources */,
 				B103F3BC1865208500B03CED /* DemoTableViewController.m in Sources */,
 				B103F3C71865E45200B03CED /* GTScrollNavigationBar.m in Sources */,
 				B103F38E1864A4D000B03CED /* main.m in Sources */,
