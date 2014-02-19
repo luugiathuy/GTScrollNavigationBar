@@ -70,6 +70,7 @@
 - (void)setScrollView:(UIScrollView*)scrollView
 {
     _scrollView = scrollView;
+    _containerView = scrollView.superview;
     
     CGRect defaultFrame = self.frame;
     defaultFrame.origin.y = [self statusBarHeight];
@@ -219,10 +220,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }
     self.frame = frame;
     
-    CGRect parentViewFrame = self.scrollView.superview.frame;
+    CGRect parentViewFrame = _containerView.frame;
     parentViewFrame.origin.y += offsetY;
     parentViewFrame.size.height -= offsetY;
-    self.scrollView.superview.frame = parentViewFrame;
+    _containerView.frame = parentViewFrame;
     
     if (animated) {
         [UIView commitAnimations];
