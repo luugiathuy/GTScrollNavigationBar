@@ -89,7 +89,7 @@
 {
     CGRect frame = self.frame;
     frame.origin.y = [self statusBarHeight];
-    [self setFrame:frame alpha:1.0f animated:NO];
+    [self setFrame:frame alpha:1.0f animated:animated];
 }
 
 #pragma mark - notifications
