@@ -20,9 +20,9 @@
 @implementation GTScrollNavigationBar
 
 @synthesize scrollView = _scrollView,
-scrollState = _scrollState,
-panGesture = _panGesture,
-lastContentOffsetY = _lastContentOffsetY;
+            scrollState = _scrollState,
+            panGesture = _panGesture,
+            lastContentOffsetY = _lastContentOffsetY;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -134,7 +134,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         return;
     }
     
-    CGFloat deltaY = (contentOffsetY - self.lastContentOffsetY);
+    CGFloat deltaY = contentOffsetY - self.lastContentOffsetY;
     if (deltaY < 0.0f) {
         self.scrollState = GTScrollNavigationBarScrollingDown;
     } else if (deltaY > 0.0f) {
@@ -150,8 +150,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     
     bool isScrollingAndGestureEnded = (gesture.state == UIGestureRecognizerStateEnded ||
                                        gesture.state == UIGestureRecognizerStateCancelled) &&
-    (self.scrollState == GTScrollNavigationBarScrollingUp ||
-     self.scrollState == GTScrollNavigationBarScrollingDown);
+                                        (self.scrollState == GTScrollNavigationBarScrollingUp ||
+                                         self.scrollState == GTScrollNavigationBarScrollingDown);
     if (isScrollingAndGestureEnded) {
         CGFloat contentOffsetYDelta = 0.0f;
         if (self.scrollState == GTScrollNavigationBarScrollingDown) {
@@ -168,7 +168,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         [self setFrame:frame alpha:alpha animated:YES];
     }
     else {
-        
         frame.origin.y -= deltaY;
         frame.origin.y = MIN(maxY, MAX(frame.origin.y, minY));
         
@@ -177,7 +176,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         
         [self setFrame:frame alpha:alpha animated:NO];
     }
-    
     
     self.lastContentOffsetY = contentOffsetY;
 }
