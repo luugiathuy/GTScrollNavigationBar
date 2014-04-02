@@ -138,7 +138,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     
     CGRect frame = self.frame;
     CGFloat alpha = 1.0f;
-    //CGFloat statusBarTopOffset = ;
     CGFloat maxY = [self statusBarTopOffset];
     CGFloat minY = maxY - CGRectGetHeight(frame) + 1.0f;
     // NOTE: plus 1px to prevent the navigation bar disappears in iOS < 7
@@ -201,7 +200,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 - (void)setContentInset
 {
     
-    if(!self.scrollView) return;
     // Don't mess the scrollview at first start
     if(self.scrollView.contentInset.top==0 && self.scrollView.contentOffset.y==0){
         return;
@@ -210,7 +208,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     UIEdgeInsets insets = self.scrollView.contentInset;
     insets.top = self.frame.origin.y+self.frame.size.height;
     self.scrollView.contentInset = insets;
-
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0f){
+        return;
+    }
+    
     bool isAtTop = (!self.gestureIsActive && self.scrollView.contentOffset.y<=0);
     // Reset contentOffset when scrolling to top after user taps statusbar
     if(isAtTop && self.scrollView.contentOffset.y!=-self.scrollView.contentInset.top){
@@ -224,6 +226,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         [UIView beginAnimations:@"GTScrollNavigationBarAnimation" context:nil];
     }
 
+    CGFloat offsetY = CGRectGetMinY(frame) - CGRectGetMinY(self.frame);
+    
     for (UIView* view in self.subviews) {
         bool isBackgroundView = view == [self.subviews objectAtIndex:0];
         bool isViewHidden = view.hidden || view.alpha == 0.0f;
@@ -233,7 +237,16 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }
     
     self.frame = frame;
-    [self setContentInset];
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] > 7.0f){
+        [self setContentInset];
+    }
+    else {
+        CGRect parentViewFrame = self.scrollView.superview.frame;
+        parentViewFrame.origin.y += offsetY;
+        parentViewFrame.size.height -= offsetY;
+        self.scrollView.superview.frame = parentViewFrame;
+    }
     
     if (animated) {
         [UIView commitAnimations];

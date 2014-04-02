@@ -59,13 +59,13 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [self.navigationController.scrollNavigationBar resetToDefaultPosition:NO];
+    [self.navigationController.scrollNavigationBar resetToDefaultPositionWithAnimation:NO];
 }
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
 {
-    [self.navigationController.scrollNavigationBar resetToDefaultPosition:NO];
+    [self.navigationController.scrollNavigationBar resetToDefaultPositionWithAnimation:NO];
 }
 
 @end

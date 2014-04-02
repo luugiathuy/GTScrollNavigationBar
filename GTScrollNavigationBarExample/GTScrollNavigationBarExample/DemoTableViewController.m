@@ -104,7 +104,7 @@
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
 {
-    [self.navigationController.scrollNavigationBar resetToDefaultPosition:NO];
+    [self.navigationController.scrollNavigationBar resetToDefaultPositionWithAnimation:NO];
 }
 
 @end
