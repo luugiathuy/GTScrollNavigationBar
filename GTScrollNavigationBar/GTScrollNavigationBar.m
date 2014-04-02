@@ -67,7 +67,7 @@
 {
     _scrollView = scrollView;
     [self resetToDefaultPositionWithAnimation:NO];
-
+    
     // remove gesture from current panGesture's view
     if (self.panGesture.view) {
         [self.panGesture.view removeGestureRecognizer:self.panGesture];
@@ -119,7 +119,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     if (self.scrollView.frame.size.height + (self.bounds.size.height * 2) >= self.scrollView.contentSize.height) {
         return;
     }
-
+    
     CGFloat contentOffsetY = self.scrollView.contentOffset.y;
     
     if (gesture.state == UIGestureRecognizerStateBegan) {
@@ -143,9 +143,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     // NOTE: plus 1px to prevent the navigation bar disappears in iOS < 7
     
     if(self.scrollState == GTScrollNavigationBarScrollingUp && self.frame.origin.y==minY){
+        self.lastContentOffsetY = contentOffsetY;
         return;
     }
     if(self.scrollState == GTScrollNavigationBarScrollingDown && self.frame.origin.y==maxY){
+        self.lastContentOffsetY = contentOffsetY;
         return;
     }
     
@@ -153,7 +155,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                         self.scrollState == GTScrollNavigationBarScrollingDown);
     
     self.gestureIsActive = (gesture.state != UIGestureRecognizerStateEnded &&
-                         gesture.state != UIGestureRecognizerStateCancelled);
+                            gesture.state != UIGestureRecognizerStateCancelled);
     
     if (isScrolling && !self.gestureIsActive) {
         if (self.scrollState == GTScrollNavigationBarScrollingDown) {
@@ -169,7 +171,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     else {
         frame.origin.y -= deltaY;
         frame.origin.y = MIN(maxY, MAX(frame.origin.y, minY));
-
+        
         alpha = (frame.origin.y - (minY + maxY)) / (maxY - (minY + maxY));
         alpha = MAX(kNearZero, alpha);
         
@@ -200,6 +202,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 - (void)setContentInset
 {
     
+    NSLog(@"inset:%ld,offset:%ld",(long)self.scrollView.contentInset.top,(long)self.scrollView.contentOffset.y);
     // Don't mess the scrollview at first start
     if(self.scrollView.contentInset.top==0 && self.scrollView.contentOffset.y==0){
         return;
@@ -208,10 +211,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     UIEdgeInsets insets = self.scrollView.contentInset;
     insets.top = self.frame.origin.y+self.frame.size.height;
     self.scrollView.contentInset = insets;
-    
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0f){
-        return;
-    }
     
     bool isAtTop = (!self.gestureIsActive && self.scrollView.contentOffset.y<=0);
     // Reset contentOffset when scrolling to top after user taps statusbar
@@ -225,7 +224,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     if (animated) {
         [UIView beginAnimations:@"GTScrollNavigationBarAnimation" context:nil];
     }
-
+    
     CGFloat offsetY = CGRectGetMinY(frame) - CGRectGetMinY(self.frame);
     
     for (UIView* view in self.subviews) {
@@ -238,7 +237,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     
     self.frame = frame;
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] > 7.0f){
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0f){
         [self setContentInset];
     }
     else {
