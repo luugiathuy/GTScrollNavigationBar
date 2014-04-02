@@ -182,7 +182,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             break;
         case UIInterfaceOrientationLandscapeLeft:
         case UIInterfaceOrientationLandscapeRight:
-            return CGRectGetWidth([UIApplication sharedApplication].statusBarFrame)+[UIApplication sharedApplication].statusBarFrame.origin.y;
+            return CGRectGetWidth([UIApplication sharedApplication].statusBarFrame);
         default:
             break;
     };
