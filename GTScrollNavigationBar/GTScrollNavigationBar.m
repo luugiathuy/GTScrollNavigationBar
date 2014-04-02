@@ -142,15 +142,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     CGFloat minY = maxY - CGRectGetHeight(frame) + 1.0f;
     // NOTE: plus 1px to prevent the navigation bar disappears in iOS < 7
     
-    if(self.scrollState == GTScrollNavigationBarScrollingUp && self.frame.origin.y==minY){
-        self.lastContentOffsetY = contentOffsetY;
-        return;
-    }
-    if(self.scrollState == GTScrollNavigationBarScrollingDown && self.frame.origin.y==maxY){
-        self.lastContentOffsetY = contentOffsetY;
-        return;
-    }
-    
     bool isScrolling = (self.scrollState == GTScrollNavigationBarScrollingUp ||
                         self.scrollState == GTScrollNavigationBarScrollingDown);
     
@@ -201,6 +192,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)setContentInset
 {
+    
+    NSLog(@"inset:%ld,offset:%ld",(long)self.scrollView.contentInset.top,(long)self.scrollView.contentOffset.y);
     // Don't mess the scrollview at first start
     if(self.scrollView.contentInset.top==0 && self.scrollView.contentOffset.y==0){
         return;
