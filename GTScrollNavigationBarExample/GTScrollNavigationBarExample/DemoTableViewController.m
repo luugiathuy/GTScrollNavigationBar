@@ -48,7 +48,7 @@
 {
     [super viewWillDisappear:animated];
     
-    self.navigationController.scrollNavigationBar.scrollView = nil;
+    //self.navigationController.scrollNavigationBar.scrollView = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -104,7 +104,7 @@
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
 {
-    [self.navigationController.scrollNavigationBar resetToDefaultPosition:YES];
+    [self.navigationController.scrollNavigationBar resetToDefaultPosition:NO];
 }
 
 @end
