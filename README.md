@@ -26,6 +26,11 @@ In your view controller which has a `UIScrollView`, e.g. `UITableViewController`
 ```objective-c
 self.navigationController.scrollNavigationBar.scrollView = self.tableView;
 ```
+To enable a change in color based on scroll position, set `beginColor` and `endColor` properties on the `ScrollNavigationBar`:
+```objective-c
+self.navigationController.scrollNavigationBar.beginColor = [UIColor blueColor];
+self.navigationController.scrollNavigationBar.endColor = [UIColor greenColor];
+```
 
 To unfollow the scrollView, simply set `scrollView` property to `nil`
 ```objective-c
@@ -39,6 +44,7 @@ Implement `scrollViewDidScrollToTop:` in the view controller to reset the naviga
     [self.navigationController.scrollNavigationBar resetToDefaultPosition:YES];
 }
 ```
+
 
 ##Contact
 [@luugiathuy](http://twitter.com/luugiathuy)

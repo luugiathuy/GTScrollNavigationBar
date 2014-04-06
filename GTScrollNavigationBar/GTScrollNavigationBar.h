@@ -18,6 +18,8 @@ typedef enum {
 
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (assign, nonatomic) GTScrollNavigationBarState scrollState;
+@property (strong, nonatomic) UIColor *beginColor;
+@property (strong, nonatomic) UIColor *endColor;
 
 - (void)resetToDefaultPosition:(BOOL)animated;
 
