@@ -20,6 +20,11 @@
     self.viewController = [[DemoTableViewController alloc] initWithStyle:UITableViewStylePlain];
     self.navController = [[UINavigationController alloc] initWithNavigationBarClass:[GTScrollNavigationBar class] toolbarClass:nil];
     [self.navController setViewControllers:@[self.viewController] animated:NO];
+    
+    //Color difference example
+    self.navController.scrollNavigationBar.beginColor = [UIColor lightGrayColor];
+    self.navController.scrollNavigationBar.endColor = [UIColor grayColor];
+    
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
     return YES;
