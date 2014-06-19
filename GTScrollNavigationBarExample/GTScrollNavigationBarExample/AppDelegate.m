@@ -17,7 +17,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    self.viewController = [[DemoTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    self.viewController = [[DemoTableViewController alloc] init];
     self.navController = [[UINavigationController alloc] initWithNavigationBarClass:[GTScrollNavigationBar class] toolbarClass:nil];
     [self.navController setViewControllers:@[self.viewController] animated:NO];
     self.window.rootViewController = self.navController;

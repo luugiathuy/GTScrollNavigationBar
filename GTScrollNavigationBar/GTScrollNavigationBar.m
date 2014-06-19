@@ -43,6 +43,8 @@
 
 - (void)setup
 {
+    self.keepSubviewsLayout = YES;
+    
     self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                               action:@selector(handlePan:)];
     self.panGesture.delegate = self;
@@ -219,10 +221,29 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }
     self.frame = frame;
     
-    CGRect parentViewFrame = self.scrollView.superview.frame;
+    UIView *parentView = self.scrollView.superview;
+    
+    if (self.keepSubviewsLayout) {
+        
+        for (UIView *subview in parentView.subviews) {
+            if (![subview isEqual:self.scrollView]) {
+                CGRect subFrame = subview.frame;
+                if (self.scrollState != GTScrollNavigationBarNone) {
+                    subFrame.origin.y -= offsetY;
+                    subview.frame = subFrame;
+                }
+            }
+        }
+    }
+    
+    CGRect parentViewFrame = parentView.frame;
     parentViewFrame.origin.y += offsetY;
     parentViewFrame.size.height -= offsetY;
     self.scrollView.superview.frame = parentViewFrame;
+    
+    CGRect scrollViewFrame = self.scrollView.frame;
+    scrollViewFrame.size.height -= offsetY;
+    self.scrollView.frame = scrollViewFrame;
     
     if (animated) {
         [UIView commitAnimations];
