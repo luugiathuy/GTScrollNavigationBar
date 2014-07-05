@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) UIPanGestureRecognizer* panGesture;
 @property (assign, nonatomic) CGFloat lastContentOffsetY;
+@property (strong, nonatomic) UIView *containerView;
 
 @end
 
@@ -69,8 +70,13 @@
 
 - (void)setScrollView:(UIScrollView*)scrollView
 {
+    [self setScrollView:scrollView withContainerView:scrollView.superview];
+}
+
+- (void)setScrollView:(UIScrollView*)scrollView withContainerView:(UIView *)containerView
+{
     _scrollView = scrollView;
-    _containerView = scrollView.superview;
+    _containerView = containerView;
     
     CGRect defaultFrame = self.frame;
     defaultFrame.origin.y = [self statusBarHeight];
