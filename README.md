@@ -17,7 +17,7 @@ Set up the navigation controller to use `GTScrollNavigationBar`:
 ```objective-c
 #import "GTScrollNavigationBar.h"
 
-self.navController = [[UINavigationController alloc] initWithNavigationBarClass:[GTScrollNavigationBar class] 
+self.navController = [[UINavigationController alloc] initWithNavigationBarClass:[GTScrollNavigationBar class]
                                                                    toolbarClass:nil];
 [self.navController setViewControllers:@[self.mainViewController] animated:NO];
 ```
@@ -36,7 +36,7 @@ Implement `scrollViewDidScrollToTop:` in the view controller to reset the naviga
 ```objective-c
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
 {
-    [self.navigationController.scrollNavigationBar resetToDefaultPosition:YES];
+    [self.navigationController.scrollNavigationBar resetToDefaultPositionWithAnimation:NO];
 }
 ```
 
