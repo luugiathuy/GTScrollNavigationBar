@@ -16,7 +16,7 @@ typedef enum {
 
 @interface GTScrollNavigationBar : UINavigationBar
 
-@property (weak, nonatomic) UIScrollView *scrollView;
+@property (strong, nonatomic) UIScrollView *scrollView;
 @property (assign, nonatomic) GTScrollNavigationBarState scrollState;
 
 /**
