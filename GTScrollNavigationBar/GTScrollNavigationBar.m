@@ -85,11 +85,6 @@
     [self setFrame:frame alpha:1.0f animated:animated];
 }
 
-- (void)resetToDefaultPosition:(BOOL)animated
-{
-    [self resetToDefaultPositionWithAnimation:animated];
-}
-
 #pragma mark - notifications
 - (void)statusBarOrientationDidChange
 {
@@ -114,13 +109,16 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     if (!self.scrollView || gesture.view != self.scrollView) {
         return;
     }
+    
     // Don't try to scroll navigation bar if there's not enough room
-    if (self.scrollView.frame.size.height + (self.bounds.size.height * 2) >= self.scrollView.contentSize.height) {
+    if (self.scrollView.frame.size.height + (self.bounds.size.height * 2) >=
+        self.scrollView.contentSize.height) {
         return;
     }
     
     CGFloat contentOffsetY = self.scrollView.contentOffset.y;
     
+    // Reset scrollState when the gesture began
     if (gesture.state == UIGestureRecognizerStateBegan) {
         self.scrollState = GTScrollNavigationBarNone;
         self.lastContentOffsetY = contentOffsetY;
@@ -147,6 +145,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                             gesture.state != UIGestureRecognizerStateCancelled);
     
     if (isScrolling && !gestureIsActive) {
+        // Animate navigation bar to end position
         if (self.scrollState == GTScrollNavigationBarScrollingDown) {
             frame.origin.y = maxY;
             alpha = 1.0f;
@@ -158,6 +157,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         [self setFrame:frame alpha:alpha animated:YES];
     }
     else {
+        // Move navigation bar with the change in contentOffsetY
         frame.origin.y -= deltaY;
         frame.origin.y = MIN(maxY, MAX(frame.origin.y, minY));
         

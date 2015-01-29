@@ -19,12 +19,6 @@ typedef enum {
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (assign, nonatomic) GTScrollNavigationBarState scrollState;
 
-/**
- * @deprecated use resetToDefaultPositionWithAnimation: instead
- * @see resetToDefaultPositionWithAnimation:
- */
-- (void)resetToDefaultPosition:(BOOL)animated __attribute__((deprecated));
-
 - (void)resetToDefaultPositionWithAnimation:(BOOL)animated;
 
 @end
