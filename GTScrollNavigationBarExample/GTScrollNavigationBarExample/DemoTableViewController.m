@@ -10,6 +10,9 @@
 #import "DemoWebViewController.h"
 #import "GTScrollNavigationBar.h"
 
+static int const kTotalRows = 100;
+static int const kTotalSections = 10;
+
 @interface DemoTableViewController ()
 
 @end
@@ -20,7 +23,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        _hasSection = NO;
     }
     return self;
 }
@@ -28,12 +31,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -61,12 +58,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return (self.hasSection ? kTotalSections : 1);
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [NSString stringWithFormat:@"Section %zd", section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 100;
+    return (self.hasSection ? (kTotalRows / kTotalSections) : kTotalRows);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -81,8 +83,10 @@
     
     // Configure the cell...
     int row = (int)indexPath.row;
-    if (row==0) {
+    if (row == 0) {
         cell.textLabel.text = @"WebView Demo";
+    } else if (row == 1){
+        cell.textLabel.text = @"Tableview with headers";
     } else {
         cell.textLabel.text = [NSString stringWithFormat:@"Item %i", row];
     }
@@ -96,10 +100,21 @@
     if (row == 0) {
         DemoWebViewController* demoWebViewController = [[DemoWebViewController alloc] init];
         [self.navigationController pushViewController:demoWebViewController animated:YES];
+    } else if (row == 1) {
+        DemoTableViewController* demoTableViewController = [[DemoTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        demoTableViewController.hasSection = YES;
+        [self.navigationController pushViewController:demoTableViewController animated:YES];
     } else {
         DemoTableViewController* demoTableViewController = [[DemoTableViewController alloc] initWithStyle:UITableViewStylePlain];
         [self.navigationController pushViewController:demoTableViewController animated:YES];
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (self.hasSection)
+        return 44.0f;
+    return 0.0f;
 }
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView

@@ -10,4 +10,6 @@
 
 @interface DemoTableViewController : UITableViewController
 
+@property (assign, nonatomic) BOOL hasSection;
+
 @end
