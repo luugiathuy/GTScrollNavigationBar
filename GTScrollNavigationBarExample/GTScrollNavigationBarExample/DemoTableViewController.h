@@ -11,5 +11,6 @@
 @interface DemoTableViewController : UITableViewController
 
 @property (assign, nonatomic) BOOL hasSection;
+@property (assign, nonatomic) BOOL hasRefreshControl;
 
 @end
