@@ -4,7 +4,7 @@ A scrollable UINavigationBar that follows a UIScrollView. This project was inspi
 
 =======
 
-![](http://luugiathuy.com/wp-content/uploads/2013/12/GTScrollNavigationBar1.png)  &nbsp;  ![](http://luugiathuy.com/wp-content/uploads/2013/12/GTScrollNavigationBar2.png)
+![GTScrollNavigationBar Screenshot 1](http://luugiathuy.com/images/GTScrollNavigationBar1.png)&nbsp;![GTScrollNavigationBar Screenshot 2](http://luugiathuy.com/images/GTScrollNavigationBar2.png)
 
 ##Installation
 ###CocoaPods
