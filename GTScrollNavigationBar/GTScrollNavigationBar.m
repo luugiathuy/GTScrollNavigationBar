@@ -171,21 +171,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 }
 
 #pragma mark - helper methods
+
 - (CGFloat)statusBarTopOffset
 {
-    switch ([UIApplication sharedApplication].statusBarOrientation) {
-        case UIInterfaceOrientationPortrait:
-        case UIInterfaceOrientationPortraitUpsideDown:
-            return CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) +
-            [UIApplication sharedApplication].statusBarFrame.origin.y;
-            break;
-        case UIInterfaceOrientationLandscapeLeft:
-        case UIInterfaceOrientationLandscapeRight:
-            return CGRectGetWidth([UIApplication sharedApplication].statusBarFrame);
-        default:
-            break;
-    };
-    return 64.0f;
+    CGRect statusBarFrame = [UIApplication sharedApplication].statusBarFrame;
+    return MIN(CGRectGetMaxX(statusBarFrame), CGRectGetMaxY(statusBarFrame));
 }
 
 - (void)setFrame:(CGRect)frame alpha:(CGFloat)alpha animated:(BOOL)animated
