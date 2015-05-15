@@ -41,6 +41,7 @@
     self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                               action:@selector(handlePan:)];
     self.panGesture.delegate = self;
+    self.panGesture.cancelsTouchesInView = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationDidBecomeActive)
