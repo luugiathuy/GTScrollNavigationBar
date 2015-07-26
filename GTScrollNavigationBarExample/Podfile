@@ -1,0 +1,20 @@
+source 'https://github.com/cocoapods/specs.git'
+
+platform :ios, '7.0'
+
+xcodeproj 'GTScrollNavigationBarExample'
+
+def install_pods
+  pod 'GTScrollNavigationBar', :path => '../GTScrollNavigationBar.podspec'
+end
+
+target :GTScrollNavigationBarExample do
+  install_pods
+end
+
+target :GTScrollNavigationBarTests, :exclusive => true do
+  install_pods
+  pod 'KIF', '~> 3.0'
+  pod 'Specta', '~> 1.0.3'
+  pod 'Expecta', '~> 1.0.2'
+end
