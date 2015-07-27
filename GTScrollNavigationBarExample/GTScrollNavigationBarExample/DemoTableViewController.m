@@ -40,6 +40,7 @@ static int const kTotalSections = 10;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+//    self.navigationController.navigationBar.translucent = NO;
     
     self.navigationItem.title = @"DemoScrollNavigationBar";
     self.navigationController.scrollNavigationBar.scrollView = self.tableView;

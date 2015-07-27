@@ -143,8 +143,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     // NOTE: plus 1px to prevent the navigation bar disappears in iOS < 7
     
     CGFloat contentInsetTop = self.scrollView.contentInset.top;
-    bool isBouncePastTopEdge = CGRectGetMinY(frame) == maxY && contentOffsetY < -contentInsetTop;
-    if (isBouncePastTopEdge) {
+    bool isBouncePastTopEdge = contentOffsetY < -contentInsetTop;
+    if (isBouncePastTopEdge && CGRectGetMinY(frame) == maxY) {
         self.lastContentOffsetY = contentOffsetY;
         return;
     }
@@ -178,7 +178,12 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         [self setFrame:frame alpha:alpha animated:NO];
     }
     
-    self.lastContentOffsetY = contentOffsetY;
+    // When panning down at begining of scrollView and the bar is expanding, do not update lastContentOffsetY
+    if (isBouncePastTopEdge && CGRectGetMinY(frame) != maxY) {
+        
+    } else {
+        self.lastContentOffsetY = contentOffsetY;
+    }
 }
 
 #pragma mark - helper methods
@@ -207,9 +212,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     
 
     if (self.scrollView) {
-        UIEdgeInsets contentInset = self.scrollView.contentInset;
-        contentInset.top += offsetY;
-        self.scrollView.contentInset = contentInset;
+        CGRect parentViewFrame = self.scrollView.superview.frame;
+        parentViewFrame.origin.y += offsetY;
+        parentViewFrame.size.height -= offsetY;
+        self.scrollView.superview.frame = parentViewFrame;
     }
     
     if (animated) {
