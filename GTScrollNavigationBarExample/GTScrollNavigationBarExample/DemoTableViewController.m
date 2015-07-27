@@ -32,6 +32,9 @@ static int const kTotalSections = 10;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.accessibilityLabel = @"DemoTableView";
+    
     if (self.hasRefreshControl) {
         [self setupRefreshControl];
     }
