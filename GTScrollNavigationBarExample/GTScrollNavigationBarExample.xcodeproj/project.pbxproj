@@ -50,8 +50,6 @@
 		B103F39A1864A4D000B03CED /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B103F3BA1865208500B03CED /* DemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTableViewController.h; sourceTree = "<group>"; };
 		B103F3BB1865208500B03CED /* DemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTableViewController.m; sourceTree = "<group>"; };
-		B103F3C51865E45200B03CED /* GTScrollNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTScrollNavigationBar.h; path = ../GTScrollNavigationBar/GTScrollNavigationBar.h; sourceTree = "<group>"; };
-		B103F3C61865E45200B03CED /* GTScrollNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTScrollNavigationBar.m; path = ../GTScrollNavigationBar/GTScrollNavigationBar.m; sourceTree = "<group>"; };
 		B13D79C41B6524D800A7273B /* GTScrollNavigationBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GTScrollNavigationBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B13D79C71B6524D800A7273B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B13D79CF1B65323700A7273B /* GTScrollNavigationBarSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTScrollNavigationBarSpec.m; sourceTree = "<group>"; };
@@ -98,7 +96,6 @@
 		B103F3751864A4D000B03CED = {
 			isa = PBXGroup;
 			children = (
-				B103F3B31864ABAD00B03CED /* GTScrollNavigationBar */,
 				B103F3871864A4D000B03CED /* GTScrollNavigationBarExample */,
 				B13D79C51B6524D800A7273B /* GTScrollNavigationBarTests */,
 				B103F3801864A4D000B03CED /* Frameworks */,
@@ -153,15 +150,6 @@
 				B103F38F1864A4D000B03CED /* GTScrollNavigationBarExample-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		B103F3B31864ABAD00B03CED /* GTScrollNavigationBar */ = {
-			isa = PBXGroup;
-			children = (
-				B103F3C51865E45200B03CED /* GTScrollNavigationBar.h */,
-				B103F3C61865E45200B03CED /* GTScrollNavigationBar.m */,
-			);
-			name = GTScrollNavigationBar;
 			sourceTree = "<group>";
 		};
 		B13D79C51B6524D800A7273B /* GTScrollNavigationBarTests */ = {

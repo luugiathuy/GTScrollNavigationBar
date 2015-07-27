@@ -63,10 +63,12 @@
                                                   object:nil];
 }
 
+#pragma mark - Properties
 - (void)setScrollView:(UIScrollView*)scrollView
 {
-    _scrollView = scrollView;
     [self resetToDefaultPositionWithAnimation:NO];
+    
+    _scrollView = scrollView;
     
     // remove gesture from current panGesture's view
     if (self.panGesture.view) {
@@ -78,6 +80,7 @@
     }
 }
 
+#pragma mark - Public methods
 - (void)resetToDefaultPositionWithAnimation:(BOOL)animated
 {
     self.scrollState = GTScrollNavigationBarNone;
@@ -86,7 +89,7 @@
     [self setFrame:frame alpha:1.0f animated:animated];
 }
 
-#pragma mark - notifications
+#pragma mark - Notifications
 - (void)statusBarOrientationDidChange
 {
     [self resetToDefaultPositionWithAnimation:NO];
@@ -139,6 +142,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     CGFloat minY = maxY - CGRectGetHeight(frame) + 1.0f;
     // NOTE: plus 1px to prevent the navigation bar disappears in iOS < 7
     
+    if (CGRectGetMinX(frame) == maxY && contentOffsetY < -self.scrollView.contentInset.top) {
+        self.lastContentOffsetY = contentOffsetY;
+        return;
+    }
+    
     bool isScrolling = (self.scrollState == GTScrollNavigationBarScrollingUp ||
                         self.scrollState == GTScrollNavigationBarScrollingDown);
     
@@ -172,7 +180,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 }
 
 #pragma mark - helper methods
-
 - (CGFloat)statusBarTopOffset
 {
     CGRect statusBarFrame = [UIApplication sharedApplication].statusBarFrame;
@@ -196,10 +203,12 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }
     self.frame = frame;
     
-    CGRect parentViewFrame = self.scrollView.superview.frame;
-    parentViewFrame.origin.y += offsetY;
-    parentViewFrame.size.height -= offsetY;
-    self.scrollView.superview.frame = parentViewFrame;
+
+    if (self.scrollView) {
+        UIEdgeInsets contentInset = self.scrollView.contentInset;
+        contentInset.top += offsetY;
+        self.scrollView.contentInset = contentInset;
+    }
     
     if (animated) {
         [UIView commitAnimations];
