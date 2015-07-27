@@ -1,0 +1,3 @@
+KIF_FRAMEWORK_SEARCH_PATHS = $(PLATFORM_DIR)/Developer/Library/Frameworks $(inherited) "$(SDKROOT)/Developer/Library/Frameworks" "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+KIF_OTHER_CFLAGS = -DKIF_XCTEST
+KIF_OTHER_LDFLAGS = -framework "CoreGraphics" -framework "IOKit" -framework "XCTest"
