@@ -10,3 +10,4 @@ script:
   GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES clean test | xcpretty -c
 - pod lib lint --quick
 - obcd --path GTScrollNavigationBar find HeaderStyle
+after_success: slather
