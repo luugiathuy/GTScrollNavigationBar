@@ -1,5 +1,7 @@
 # GTScrollNavigationBar
 
+[![CocoaPods Version](https://img.shields.io/cocoapods/v/GTScrollNavigationBar.svg)](http://cocoadocs.org/docsets/GTScrollNavigationBar) [![Build Status](https://travis-ci.org/luugiathuy/GTScrollNavigationBar.svg?branch=master)](https://travis-ci.org/luugiathuy/GTScrollNavigationBar)
+
 A lightweight scrollable UINavigationBar that follows a UIScrollView. This project was inspired by the navigation bar functionality seen in the Chrome, Facebook and Instagram iOS apps.
 
 =======
