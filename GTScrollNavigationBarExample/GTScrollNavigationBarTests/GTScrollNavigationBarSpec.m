@@ -32,7 +32,6 @@ describe(@"GTScrollNavigationBar", ^{
     });
     
     beforeEach(^{
-        [system simulateDeviceRotationToOrientation:UIDeviceOrientationPortrait];
         [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
                          atScrollPosition:UITableViewScrollPositionTop
                                  animated:NO];
@@ -76,12 +75,24 @@ describe(@"GTScrollNavigationBar", ^{
         expect(CGRectGetMinY(navigationBar.frame)).to.beCloseTo(NavigationBarPortraitMaxY);
     });
     
+    describe(@"when the app becomes active after going background", ^{
+        it(@"resets navigation bar to default position", ^{
+            [tester swipeViewWithAccessibilityLabel:@"DemoTableView" inDirection:KIFSwipeDirectionUp];
+            [tester waitForTimeInterval:0.3];
+            [tester deactivateAppForDuration:0.3];
+            expect(CGRectGetMinY(navigationBar.frame)).to.beCloseTo(NavigationBarPortraitMaxY);
+        });
+    });
+    
     describe(@"when device orientation changes", ^{
         it(@"resets navigation bar to default position", ^{
             [tester swipeViewWithAccessibilityLabel:@"DemoTableView" inDirection:KIFSwipeDirectionUp];
             [system simulateDeviceRotationToOrientation:UIDeviceOrientationLandscapeLeft];
             [tester waitForTimeInterval:0.3];
             expect(CGRectGetMinY(navigationBar.frame)).to.beCloseTo(NavigationBarLandscapeMaxY);
+            // rotate back
+            [system simulateDeviceRotationToOrientation:UIDeviceOrientationPortrait];
+            [tester waitForTimeInterval:0.3];
         });
     });
 });
