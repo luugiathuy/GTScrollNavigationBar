@@ -75,15 +75,15 @@ describe(@"GTScrollNavigationBar", ^{
         expect(CGRectGetMinY(navigationBar.frame)).to.beCloseTo(NavigationBarPortraitMaxY);
     });
     
-    describe(@"when the app becomes active after going background", ^{
-        it(@"resets navigation bar to default position", ^{
-            [tester swipeViewWithAccessibilityLabel:@"DemoTableView" inDirection:KIFSwipeDirectionUp];
-            [tester waitForAnimationsToFinish];
-            [tester deactivateAppForDuration:1];
-            [tester waitForAnimationsToFinish];
-            expect(CGRectGetMinY(navigationBar.frame)).to.beCloseTo(NavigationBarPortraitMaxY);
-        });
-    });
+//    describe(@"when the app becomes active after going background", ^{
+//        it(@"resets navigation bar to default position", ^{
+//            [tester swipeViewWithAccessibilityLabel:@"DemoTableView" inDirection:KIFSwipeDirectionUp];
+//            [tester waitForAnimationsToFinish];
+//            [tester deactivateAppForDuration:1];
+//            [tester waitForAnimationsToFinish];
+//            expect(CGRectGetMinY(navigationBar.frame)).to.beCloseTo(NavigationBarPortraitMaxY);
+//        });
+//    });
     
     describe(@"when device orientation changes", ^{
         it(@"resets navigation bar to default position", ^{
