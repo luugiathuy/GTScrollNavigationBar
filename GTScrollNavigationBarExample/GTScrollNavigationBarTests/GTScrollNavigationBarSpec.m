@@ -80,6 +80,7 @@ describe(@"GTScrollNavigationBar", ^{
             [tester swipeViewWithAccessibilityLabel:@"DemoTableView" inDirection:KIFSwipeDirectionUp];
             [tester waitForTimeInterval:0.3];
             [tester deactivateAppForDuration:0.3];
+            [tester waitForTimeInterval:0.3];
             expect(CGRectGetMinY(navigationBar.frame)).to.beCloseTo(NavigationBarPortraitMaxY);
         });
     });
