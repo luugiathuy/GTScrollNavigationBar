@@ -96,6 +96,22 @@ describe(@"GTScrollNavigationBar", ^{
             [tester waitForAnimationsToFinish];
         });
     });
+    
+    describe(@"when navigation bar's scrollView is set to nil ", ^{
+        beforeAll(^{
+            navigationBar.scrollView = nil;
+        });
+        
+        it(@"does not shrinks when scrolling", ^{
+            [tester swipeViewWithAccessibilityLabel:@"DemoTableView" inDirection:KIFSwipeDirectionUp];
+            [tester waitForAnimationsToFinish];
+            expect(CGRectGetMinY(navigationBar.frame)).to.beCloseTo(NavigationBarPortraitMaxY);
+        });
+        
+        afterAll(^{
+            navigationBar.scrollView = tableView;
+        });
+    });
 });
 
 SpecEnd
