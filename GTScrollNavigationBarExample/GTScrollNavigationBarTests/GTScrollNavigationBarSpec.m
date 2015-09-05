@@ -57,7 +57,7 @@ describe(@"GTScrollNavigationBar", ^{
     it(@"shrinks when panning up", ^{
         CGPoint center = tableView.center;
         [tableView dragFromPoint:center toPoint:CGPointMake(center.x, center.y - 12) steps:12];
-        [tester waitForTimeInterval:0.3];
+        [tester waitForAnimationsToFinish];
         expect(CGRectGetMinY(navigationBar.frame)).to.beCloseTo(NavigationBarPortraitMinY);
     });
     
@@ -65,7 +65,7 @@ describe(@"GTScrollNavigationBar", ^{
         CGPoint center = tableView.center;
         [tableView dragFromPoint:center toPoint:CGPointMake(center.x, center.y - 12) steps:12];
         [tableView dragFromPoint:center toPoint:CGPointMake(center.x, center.y + 12) steps:12];
-        [tester waitForTimeInterval:0.3];
+        [tester waitForAnimationsToFinish];
         expect(CGRectGetMinY(navigationBar.frame)).to.beCloseTo(NavigationBarPortraitMaxY);
     });
     
@@ -78,9 +78,9 @@ describe(@"GTScrollNavigationBar", ^{
     describe(@"when the app becomes active after going background", ^{
         it(@"resets navigation bar to default position", ^{
             [tester swipeViewWithAccessibilityLabel:@"DemoTableView" inDirection:KIFSwipeDirectionUp];
-            [tester waitForTimeInterval:0.3];
-            [tester deactivateAppForDuration:0.3];
-            [tester waitForTimeInterval:0.3];
+            [tester waitForAnimationsToFinish];
+            [tester deactivateAppForDuration:1];
+            [tester waitForAnimationsToFinish];
             expect(CGRectGetMinY(navigationBar.frame)).to.beCloseTo(NavigationBarPortraitMaxY);
         });
     });
@@ -89,11 +89,11 @@ describe(@"GTScrollNavigationBar", ^{
         it(@"resets navigation bar to default position", ^{
             [tester swipeViewWithAccessibilityLabel:@"DemoTableView" inDirection:KIFSwipeDirectionUp];
             [system simulateDeviceRotationToOrientation:UIDeviceOrientationLandscapeLeft];
-            [tester waitForTimeInterval:0.3];
+            [tester waitForAnimationsToFinish];
             expect(CGRectGetMinY(navigationBar.frame)).to.beCloseTo(NavigationBarLandscapeMaxY);
             // rotate back
             [system simulateDeviceRotationToOrientation:UIDeviceOrientationPortrait];
-            [tester waitForTimeInterval:0.3];
+            [tester waitForAnimationsToFinish];
         });
     });
 });
