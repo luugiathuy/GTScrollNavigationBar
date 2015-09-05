@@ -13,6 +13,7 @@
 
 static const CGFloat NavigationBarPortraitMinY = -23.0f;
 static const CGFloat NavigationBarPortraitMaxY = 20.0f;
+static const CGFloat NavigationBarLandscapeMaxY = 0.0f;
 
 SpecBegin(GTScrollNavigationBar)
 
@@ -31,6 +32,7 @@ describe(@"GTScrollNavigationBar", ^{
     });
     
     beforeEach(^{
+        [system simulateDeviceRotationToOrientation:UIDeviceOrientationPortrait];
         [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
                          atScrollPosition:UITableViewScrollPositionTop
                                  animated:NO];
@@ -72,6 +74,15 @@ describe(@"GTScrollNavigationBar", ^{
         [tester swipeViewWithAccessibilityLabel:@"DemoTableView" inDirection:KIFSwipeDirectionUp];
         [tester tapStatusBar];
         expect(CGRectGetMinY(navigationBar.frame)).to.beCloseTo(NavigationBarPortraitMaxY);
+    });
+    
+    describe(@"when device orientation changes", ^{
+        it(@"resets navigation bar to default position", ^{
+            [tester swipeViewWithAccessibilityLabel:@"DemoTableView" inDirection:KIFSwipeDirectionUp];
+            [system simulateDeviceRotationToOrientation:UIDeviceOrientationLandscapeLeft];
+            [tester waitForTimeInterval:0.3];
+            expect(CGRectGetMinY(navigationBar.frame)).to.beCloseTo(NavigationBarLandscapeMaxY);
+        });
     });
 });
 

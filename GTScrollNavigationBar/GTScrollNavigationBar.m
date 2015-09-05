@@ -190,7 +190,12 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 - (CGFloat)statusBarTopOffset
 {
     CGRect statusBarFrame = [UIApplication sharedApplication].statusBarFrame;
-    return MIN(CGRectGetMaxX(statusBarFrame), CGRectGetMaxY(statusBarFrame));
+    CGFloat topOffset = MIN(CGRectGetMaxX(statusBarFrame), CGRectGetMaxY(statusBarFrame));
+    bool isInCallStatusBar = topOffset == 40.0f;
+    if (isInCallStatusBar) {
+        topOffset -= 20.0f;
+    }
+    return topOffset;
 }
 
 - (void)setFrame:(CGRect)frame alpha:(CGFloat)alpha animated:(BOOL)animated
