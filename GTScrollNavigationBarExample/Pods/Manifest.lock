@@ -1,9 +1,9 @@
 PODS:
-  - Expecta (1.0.2)
-  - GTScrollNavigationBar (0.1.3)
-  - KIF (3.2.3):
-    - KIF/XCTest (= 3.2.3)
-  - KIF/XCTest (3.2.3)
+  - Expecta (1.0.3)
+  - GTScrollNavigationBar (0.2)
+  - KIF (3.3.0):
+    - KIF/Core (= 3.3.0)
+  - KIF/Core (3.3.0)
   - Specta (1.0.3)
 
 DEPENDENCIES:
@@ -17,9 +17,9 @@ EXTERNAL SOURCES:
     :path: "../GTScrollNavigationBar.podspec"
 
 SPEC CHECKSUMS:
-  Expecta: 54e8a3530add08f4f0208c111355eda7cde74a53
-  GTScrollNavigationBar: 2fee3124c458393eca1d6d68ebf759051280f475
-  KIF: a94bffe9c97e449e44f8fa481c53243d21309e1e
+  Expecta: 9d1bff6c8b0eeee73a166a2ee898892478927a15
+  GTScrollNavigationBar: eea90e88744d13444d918824ea3d671ee0aeb292
+  KIF: 0a82046d06f3648799cac522d2d0f7934214caac
   Specta: cf3e4188cf35375c3ee2cd03f8db8f1f4ef98234
 
 COCOAPODS: 0.38.2

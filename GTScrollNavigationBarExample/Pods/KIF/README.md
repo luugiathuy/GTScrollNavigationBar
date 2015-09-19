@@ -27,7 +27,7 @@ KIF's test suite has been run against iOS 5.1 and above (including iOS 8), thoug
 KIF attempts to imitate actual user input. Automation is done using tap events wherever possible.
 
 #### Automatic Integration with Xcode 5 Testing Tools
-Xcode 5 introduces [new testing an continuous integration tools](https://developer.apple.com/technologies/tools/whats-new.html) built on the same testing platform as KIF.  You can easily run a single KIF test with the Test Navigator or kick off nightly acceptance tests with Bots.
+Xcode 5 introduces [new testing and continuous integration tools](https://developer.apple.com/technologies/tools/whats-new.html) built on the same testing platform as KIF.  You can easily run a single KIF test with the Test Navigator or kick off nightly acceptance tests with Bots.
 
 See KIF in Action
 -----------------
@@ -128,7 +128,7 @@ The last step is to configure your unit tests to run when you trigger a test (‚å
 ## Example test cases
 With your project configured to use KIF, it's time to start writing tests. There are two main classes used in KIF testing: the test case (`KIFTestCase`, subclass of `XCTestCase`) and the UI test actor (`KIFUITestActor`).  The XCTest test runner loads the test case classes and executes their test.  Inside these tests, the tester performs the UI operations which generally imitate a user interaction. Three of the most common tester actions are "tap this view," "enter text into this view," and "wait for this view." These steps are included as factory methods on `KIFUITestActor` in the base KIF implementation.
 
-KIF relies on the built-in accessibility of iOS to perform its test steps. As such, it's important that your app is fully accessible. This is also a great way to ensure that your app is usable by the sight impaired. Making your application accessible is usually as easy as giving your views reasonable labels. More details are available in [Apple's Documentation](http://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/iPhoneAccessibility/Making_Application_Accessible/Making_Application_Accessible.html#//apple_ref/doc/uid/TP40008785-CH102-SW5).
+KIF relies on the built-in accessibility of iOS to perform its test steps. As such, it's important that your app is fully accessible. This is also a great way to ensure that your app is usable by everyone. Giving your views reasonable labels is usually a good place to start when making your application accessible. More details are available in [Apple's Documentation](http://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/iPhoneAccessibility/Making_Application_Accessible/Making_Application_Accessible.html#//apple_ref/doc/uid/TP40008785-CH102-SW5).
 
 The first step is to create a test class to test some functionality.  In our case, we will create a login test (`LoginTests`). Create a new class that inherits from KIFTestCase.  You may have to update the import to point to `<KIF/KIF.h>`. The test method name provides a unique identifier. Your `KIFTestCase` subclass should look something like this:
 
@@ -253,6 +253,8 @@ If you want to write your test cases in Swift, you'll need to keep two things in
 2. The `tester` and `system` keywords are C preprocessor macros which aren't available in Swift. You can easily write a small extension to `XCTestCase` or any other class to access them:
 
 ```swift
+import KIF
+ 
 extension XCTestCase {
     func tester(_ file : String = __FILE__, _ line : Int = __LINE__) -> KIFUITestActor {
         return KIFUITestActor(inFile: file, atLine: line, delegate: self)

@@ -18,6 +18,7 @@
 		B103F3BC1865208500B03CED /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B103F3BB1865208500B03CED /* DemoTableViewController.m */; };
 		B13D79D01B65323700A7273B /* GTScrollNavigationBarSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B13D79CF1B65323700A7273B /* GTScrollNavigationBarSpec.m */; };
 		B1714BAB186860F7006577EF /* DemoWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1714BAA186860F7006577EF /* DemoWebViewController.m */; };
+		B17A2CA71BAD1DFD00029028 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B17A2CA61BAD1DFD00029028 /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		BD665F78D6C5126B7AE2BCC7 /* libPods-GTScrollNavigationBarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 248CE2268EFED83AE051851F /* libPods-GTScrollNavigationBarTests.a */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		B13D79CF1B65323700A7273B /* GTScrollNavigationBarSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTScrollNavigationBarSpec.m; sourceTree = "<group>"; };
 		B1714BA9186860F7006577EF /* DemoWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoWebViewController.h; sourceTree = "<group>"; };
 		B1714BAA186860F7006577EF /* DemoWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoWebViewController.m; sourceTree = "<group>"; };
+		B17A2CA61BAD1DFD00029028 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		BF390B836BE7EDF3CFFF63FA /* Pods-GTScrollNavigationBarExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GTScrollNavigationBarExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-GTScrollNavigationBarExample/Pods-GTScrollNavigationBarExample.release.xcconfig"; sourceTree = "<group>"; };
 		CFE0D86DEC3C1B37FFCD3831 /* Pods-GTScrollNavigationBarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GTScrollNavigationBarTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GTScrollNavigationBarTests/Pods-GTScrollNavigationBarTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,6 +137,7 @@
 				B103F3BB1865208500B03CED /* DemoTableViewController.m */,
 				B1714BA9186860F7006577EF /* DemoWebViewController.h */,
 				B1714BAA186860F7006577EF /* DemoWebViewController.m */,
+				B17A2CA61BAD1DFD00029028 /* Launch Screen.storyboard */,
 				B103F3931864A4D000B03CED /* Images.xcassets */,
 				B103F3881864A4D000B03CED /* Supporting Files */,
 			);
@@ -218,7 +221,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = GT;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Luu Gia Thuy";
 				TargetAttributes = {
 					B13D79C31B6524D800A7273B = {
@@ -250,6 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B17A2CA71BAD1DFD00029028 /* Launch Screen.storyboard in Resources */,
 				B103F38C1864A4D000B03CED /* InfoPlist.strings in Resources */,
 				B103F3941864A4D000B03CED /* Images.xcassets in Resources */,
 			);
@@ -388,6 +392,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Gia Thuy Luu (K95WVA6K85)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -402,7 +407,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -435,7 +440,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -450,7 +455,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GTScrollNavigationBarExample/GTScrollNavigationBarExample-Prefix.pch";
 				INFOPLIST_FILE = "GTScrollNavigationBarExample/GTScrollNavigationBarExample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "luugiathuy.ios.scrollnavigationbarexample.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -466,7 +472,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GTScrollNavigationBarExample/GTScrollNavigationBarExample-Prefix.pch";
 				INFOPLIST_FILE = "GTScrollNavigationBarExample/GTScrollNavigationBarExample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "luugiathuy.ios.scrollnavigationbarexample.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -479,12 +486,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -495,6 +500,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luugiathuy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GTScrollNavigationBarExample.app/GTScrollNavigationBarExample";
 			};
@@ -506,19 +512,18 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = GTScrollNavigationBarTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luugiathuy.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GTScrollNavigationBarExample.app/GTScrollNavigationBarExample";
 			};

@@ -204,8 +204,15 @@
         
         // This is mostly redundant of the test in _accessibilityElementWithLabel:
         KIFTestWaitCondition(!isnan(tappablePointInElement.x), error, @"View is not tappable");
-        [view tapAtPoint:tappablePointInElement];
         
+        NSOperatingSystemVersion iOS9 = {9, 0, 0};
+        BOOL isOperatingSystemAtLeastVersion9 = [NSProcessInfo instancesRespondToSelector:@selector(isOperatingSystemAtLeastVersion:)] && [[NSProcessInfo new] isOperatingSystemAtLeastVersion:iOS9];
+        if (isOperatingSystemAtLeastVersion9 && [NSStringFromClass([view class]) isEqualToString:@"_UIAlertControllerActionView"]) {
+            [view longPressAtPoint:tappablePointInElement duration:0.1];
+        } else {
+            [view tapAtPoint:tappablePointInElement];
+        }
+
         KIFTestCondition(![view canBecomeFirstResponder] || [view isDescendantOfFirstResponder], error, @"Failed to make the view into the first responder");
         
         return KIFTestStepResultSuccess;
@@ -320,35 +327,36 @@
     }];
 }
 
-- (void)enterTextIntoCurrentFirstResponder:(NSString *)text;
+- (void)enterTextIntoCurrentFirstResponder:(NSString *)text
 {
     [self waitForKeyInputReady];
     [self enterTextIntoCurrentFirstResponder:text fallbackView:nil];
 }
 
-- (void)enterTextIntoCurrentFirstResponder:(NSString *)text fallbackView:(UIView *)fallbackView;
+- (void)enterTextIntoCurrentFirstResponder:(NSString *)text fallbackView:(UIView *)fallbackView
 {
-    for (NSUInteger characterIndex = 0; characterIndex < [text length]; characterIndex++) {
-        NSString *characterString = [text substringWithRange:NSMakeRange(characterIndex, 1)];
-        
-        if (![KIFTypist enterCharacter:characterString]) {
-            // Attempt to cheat if we couldn't find the character
-            if (!fallbackView) {
-                UIResponder *firstResponder = [[[UIApplication sharedApplication] keyWindow] firstResponder];
-                
-                if ([firstResponder isKindOfClass:[UIView class]]) {
-                    fallbackView = (UIView *)firstResponder;
-                }
-            }
-            
-            if ([fallbackView isKindOfClass:[UITextField class]] || [fallbackView isKindOfClass:[UITextView class]] || [fallbackView isKindOfClass:[UISearchBar class]]) {
-                NSLog(@"KIF: Unable to find keyboard key for %@. Inserting manually.", characterString);
-                [(UITextField *)fallbackView setText:[[(UITextField *)fallbackView text] stringByAppendingString:characterString]];
-            } else {
-                [self failWithError:[NSError KIFErrorWithFormat:@"Failed to find key for character \"%@\"", characterString] stopTest:YES];
-            }
-        }
-    }
+	[text enumerateSubstringsInRange:NSMakeRange(0, text.length)
+							 options:NSStringEnumerationByComposedCharacterSequences
+						  usingBlock: ^(NSString *characterString,NSRange substringRange,NSRange enclosingRange,BOOL * stop)
+	 {
+		 if (![KIFTypist enterCharacter:characterString]) {
+			 // Attempt to cheat if we couldn't find the character
+			 UIView * fallback = fallbackView;
+			 if (!fallback) {
+				 UIResponder *firstResponder = [[[UIApplication sharedApplication] keyWindow] firstResponder];
+				 if ([firstResponder isKindOfClass:[UIView class]]) {
+					 fallback = (UIView *)firstResponder;
+				 }
+			 }
+
+			 if ([fallback isKindOfClass:[UITextField class]] || [fallback isKindOfClass:[UITextView class]] || [fallback isKindOfClass:[UISearchBar class]]) {
+				 NSLog(@"KIF: Unable to find keyboard key for %@. Inserting manually.", characterString);
+				 [(UITextField *)fallback setText:[[(UITextField *)fallback text] stringByAppendingString:characterString]];
+			 } else {
+				 [self failWithError:[NSError KIFErrorWithFormat:@"Failed to find key for character \"%@\"", characterString] stopTest:YES];
+			 }
+		 }
+	 }];
 }
 
 - (void)enterText:(NSString *)text intoViewWithAccessibilityLabel:(NSString *)label
@@ -774,8 +782,8 @@
     [self tapItemAtIndexPath:indexPath inCollectionView:collectionView];
 }
 
-- (void)acknowledgeSystemAlert {
-    [UIAutomationHelper acknowledgeSystemAlert];
+- (BOOL)acknowledgeSystemAlert {
+    return [UIAutomationHelper acknowledgeSystemAlert];
 }
 
 - (void)tapItemAtIndexPath:(NSIndexPath *)indexPath inCollectionView:(UICollectionView *)collectionView
@@ -804,7 +812,7 @@
     UIView *viewToSwipe = nil;
     UIAccessibilityElement *element = nil;
 
-    [self waitForAccessibilityElement:&element view:&viewToSwipe withLabel:label value:value traits:traits tappable:NO];
+    [self waitForAccessibilityElement:&element view:&viewToSwipe withLabel:label value:value traits:traits tappable:YES];
 
     [self swipeAccessibilityElement:element inView:viewToSwipe inDirection:direction];
 }
@@ -1035,5 +1043,54 @@
     [UIAutomationHelper deactivateAppForDuration:@(duration)];
 }
 
+-(void) tapStepperWithAccessibilityLabel: (NSString *)accessibilityLabel increment: (KIFStepperDirection) stepperDirection
+{
+	@autoreleasepool {
+		UIView *view = nil;
+		UIAccessibilityElement *element = nil;
+		[self waitForAccessibilityElement:&element view:&view withLabel:accessibilityLabel value:nil traits:UIAccessibilityTraitNone tappable:YES];
+		[self tapStepperWithAccessibilityElement:element increment:stepperDirection inView:view];
+	}
+}
+
+//inspired by http://www.raywenderlich.com/61419/ios-ui-testing-with-kif
+- (void)tapStepperWithAccessibilityElement:(UIAccessibilityElement *)element increment: (KIFStepperDirection) stepperDirection inView:(UIView *)view
+{
+	[self runBlock:^KIFTestStepResult(NSError **error) {
+
+		KIFTestWaitCondition(view.isUserInteractionActuallyEnabled, error, @"View is not enabled for interaction");
+
+		// If the accessibilityFrame is not set, fallback to the view frame.
+		CGRect elementFrame;
+		if (CGRectEqualToRect(CGRectZero, element.accessibilityFrame)) {
+			elementFrame.origin = CGPointZero;
+			elementFrame.size = view.frame.size;
+		} else {
+			elementFrame = [view.windowOrIdentityWindow convertRect:element.accessibilityFrame toView:view];
+		}
+
+		CGPoint stepperPointToTap = [view tappablePointInRect:elementFrame];
+
+		switch (stepperDirection)
+		{
+			case KIFStepperDirectionIncrement:
+				stepperPointToTap.x += CGRectGetWidth(view.frame) / 4;
+				break;
+			case KIFStepperDirectionDecrement:
+				stepperPointToTap.x -= CGRectGetWidth(view.frame) / 4;
+				break;
+		}
+
+		// This is mostly redundant of the test in _accessibilityElementWithLabel:
+		KIFTestWaitCondition(!isnan(stepperPointToTap.x), error, @"View is not tappable");
+		[view tapAtPoint:stepperPointToTap];
+
+		KIFTestCondition(![view canBecomeFirstResponder] || [view isDescendantOfFirstResponder], error, @"Failed to make the view into the first responder");
+
+		return KIFTestStepResultSuccess;
+	}];
+
+	[self waitForAnimationsToFinish];
+}
 @end
 

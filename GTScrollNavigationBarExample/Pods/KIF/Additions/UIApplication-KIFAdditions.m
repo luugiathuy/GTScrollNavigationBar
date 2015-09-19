@@ -134,6 +134,11 @@ static const void *KIFRunLoopModesKey = &KIFRunLoopModesKey;
     
     UIGraphicsBeginImageContextWithOptions([[windows objectAtIndex:0] bounds].size, YES, 0);
     for (UIWindow *window in windows) {
+		//avoid https://github.com/kif-framework/KIF/issues/679
+		if (window.hidden) {
+			continue;
+		}
+
         if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
             [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:YES];
         } else {
@@ -147,7 +152,9 @@ static const void *KIFRunLoopModesKey = &KIFRunLoopModesKey;
 
     NSError *directoryCreationError = nil;
     if (![[NSFileManager defaultManager] createDirectoryAtPath:outputPath withIntermediateDirectories:YES attributes:nil error:&directoryCreationError]) {
-        *error = [NSError KIFErrorWithFormat:@"Couldn't create directory at path %@ (details: %@)", outputPath, directoryCreationError];
+        if (error) {
+            *error = [NSError KIFErrorWithFormat:@"Couldn't create directory at path %@ (details: %@)", outputPath, directoryCreationError];
+        }
         return NO;
     }
 

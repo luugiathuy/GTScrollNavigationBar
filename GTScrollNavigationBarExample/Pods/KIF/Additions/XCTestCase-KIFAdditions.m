@@ -8,6 +8,7 @@
 
 #import "XCTestCase-KIFAdditions.h"
 #import "LoadableCategory.h"
+#import "UIApplication-KIFAdditions.h"
 #import <objc/runtime.h>
 
 MAKE_CATEGORIES_LOADABLE(TestCase_KIFAdditions)
@@ -32,9 +33,10 @@ static inline void Swizzle(Class c, SEL orig, SEL new)
 {
     self.continueAfterFailure = YES;
 
-    [self recordFailureWithDescription:exception.description inFile:exception.userInfo[@"SenTestFilenameKey"] atLine:[exception.userInfo[@"SenTestLineNumberKey"] unsignedIntegerValue] expected:NO];
+    [self recordFailureWithDescription:exception.description inFile:exception.userInfo[@"FilenameKey"] atLine:[exception.userInfo[@"LineNumberKey"] unsignedIntegerValue] expected:NO];
 
     if (stop) {
+        [self writeScreenshotForException:exception];
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             Swizzle([XCTestCase class], @selector(_recordUnexpectedFailureWithDescription:exception:), @selector(KIF_recordUnexpectedFailureWithDescription:exception:));
@@ -58,6 +60,11 @@ static inline void Swizzle(Class c, SEL orig, SEL new)
     }
 }
 
+- (void)writeScreenshotForException:(NSException *)exception;
+{
+    [[UIApplication sharedApplication] writeScreenshotForLine:[exception.userInfo[@"LineNumberKey"] unsignedIntegerValue] inFile:exception.userInfo[@"FilenameKey"] description:nil error:NULL];
+}
+
 @end
 
 #ifdef __IPHONE_8_0
@@ -78,7 +85,7 @@ static inline void Swizzle(Class c, SEL orig, SEL new)
     if (![[arg3 name] isEqualToString:@"KIFFailureException"]) {
         [self KIF_recordUnexpectedFailureForTestRun:arg1 description:arg2 exception:arg3];
     } else {
-        [arg1 recordFailureWithDescription:[NSString stringWithFormat:@"Test suite stopped on fatal error: %@", arg3.description] inFile:arg3.userInfo[@"SenTestFilenameKey"] atLine:[arg3.userInfo[@"SenTestLineNumberKey"] unsignedIntegerValue] expected:NO];
+        [arg1 recordFailureWithDescription:[NSString stringWithFormat:@"Test suite stopped on fatal error: %@", arg3.description] inFile:arg3.userInfo[@"FilenameKey"] atLine:[arg3.userInfo[@"LineNumberKey"] unsignedIntegerValue] expected:NO];
     }
 }
 
