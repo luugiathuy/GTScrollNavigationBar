@@ -51,6 +51,12 @@ Implement `scrollViewDidScrollToTop:` in the view controller to reset the naviga
 }
 ```
 
+If your scroll view is not a direct subview of your view controller's view, you can specify which view is the one who should change its frame on scroll by using `topLevelView` property:
+
+```objective-c
+self.navigationController.scrollNavigationBar.scrollView = self.view;
+```
+
 ## Contact
 
 [@luugiathuy](http://twitter.com/luugiathuy)
