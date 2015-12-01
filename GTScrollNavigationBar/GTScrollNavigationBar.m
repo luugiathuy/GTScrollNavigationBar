@@ -83,7 +83,7 @@
 #pragma mark - Public methods
 - (void)resetToDefaultPositionWithAnimation:(BOOL)animated
 {
-    self.scrollState = GTScrollNavigationBarNone;
+    self.scrollState = GTScrollNavigationBarStateNone;
     CGRect frame = self.frame;
     frame.origin.y = [self statusBarTopOffset];
     [self setFrame:frame alpha:1.0f animated:animated];
@@ -124,16 +124,16 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     
     // Reset scrollState when the gesture began
     if (gesture.state == UIGestureRecognizerStateBegan) {
-        self.scrollState = GTScrollNavigationBarNone;
+        self.scrollState = GTScrollNavigationBarStateNone;
         self.lastContentOffsetY = contentOffsetY;
         return;
     }
     
     CGFloat deltaY = contentOffsetY - self.lastContentOffsetY;
     if (deltaY < 0.0f) {
-        self.scrollState = GTScrollNavigationBarScrollingDown;
+        self.scrollState = GTScrollNavigationBarStateScrollingDown;
     } else if (deltaY > 0.0f) {
-        self.scrollState = GTScrollNavigationBarScrollingUp;
+        self.scrollState = GTScrollNavigationBarStateScrollingUp;
     }
     
     CGRect frame = self.frame;
@@ -149,19 +149,19 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         return;
     }
     
-    bool isScrolling = (self.scrollState == GTScrollNavigationBarScrollingUp ||
-                        self.scrollState == GTScrollNavigationBarScrollingDown);
+    bool isScrolling = (self.scrollState == GTScrollNavigationBarStateScrollingUp ||
+                        self.scrollState == GTScrollNavigationBarStateScrollingDown);
     
     bool gestureIsActive = (gesture.state != UIGestureRecognizerStateEnded &&
                             gesture.state != UIGestureRecognizerStateCancelled);
     
     if (isScrolling && !gestureIsActive) {
         // Animate navigation bar to end position
-        if (self.scrollState == GTScrollNavigationBarScrollingDown) {
+        if (self.scrollState == GTScrollNavigationBarStateScrollingDown) {
             frame.origin.y = maxY;
             alpha = 1.0f;
         }
-        else if (self.scrollState == GTScrollNavigationBarScrollingUp) {
+        else if (self.scrollState == GTScrollNavigationBarStateScrollingUp) {
             frame.origin.y = minY;
             alpha = kNearZero;
         }
