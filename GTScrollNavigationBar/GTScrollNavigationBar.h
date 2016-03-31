@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, GTScrollNavigationBarState) {
 
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (assign, nonatomic) GTScrollNavigationBarState scrollState;
+@property (assign, nonatomic) BOOL adjustsScrollView;
 
 - (void)resetToDefaultPositionWithAnimation:(BOOL)animated;
 
