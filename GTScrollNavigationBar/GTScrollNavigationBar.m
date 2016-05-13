@@ -236,6 +236,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (GTScrollNavigationBar*)scrollNavigationBar
 {
+    if ( ![self.navigationBar isMemberOfClass:[GTScrollNavigationBar class]] ) {
+        return Nil;
+    }
+    
     return (GTScrollNavigationBar*)self.navigationBar;
 }
 
