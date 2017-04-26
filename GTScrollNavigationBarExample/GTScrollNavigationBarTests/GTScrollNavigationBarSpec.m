@@ -79,7 +79,7 @@ describe(@"GTScrollNavigationBar", ^{
 //        it(@"resets navigation bar to default position", ^{
 //            [tester swipeViewWithAccessibilityLabel:@"DemoTableView" inDirection:KIFSwipeDirectionUp];
 //            [tester waitForAnimationsToFinish];
-//            [tester deactivateAppForDuration:1];
+//            [system deactivateAppForDuration:2.0];
 //            [tester waitForAnimationsToFinish];
 //            expect(CGRectGetMinY(navigationBar.frame)).to.beCloseTo(NavigationBarPortraitMaxY);
 //        });
