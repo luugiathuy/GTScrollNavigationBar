@@ -16,57 +16,7 @@
 #import "UIApplication-KIFAdditions.h"
 #import "UIView-KIFAdditions.h"
 
-@interface AccessibilitySettingsController
-- (void)setAXInspectorEnabled:(NSNumber*)enabled specifier:(id)specifier;
-@end
-
-
 @implementation KIFTestActor
-
-+ (void)load
-{
-    @autoreleasepool {
-        NSLog(@"KIFTester loaded");
-        [KIFTestActor _enableAccessibility];
-        [UIApplication swizzleRunLoop];
-    }
-}
-
-+ (void)_enableAccessibility;
-{
-    NSDictionary *environment = [[NSProcessInfo processInfo] environment];
-    NSString *simulatorRoot = [environment objectForKey:@"IPHONE_SIMULATOR_ROOT"];
-    
-    NSString *appSupportLocation = @"/System/Library/PrivateFrameworks/AppSupport.framework/AppSupport";
-    if (simulatorRoot) {
-        appSupportLocation = [simulatorRoot stringByAppendingString:appSupportLocation];
-    }
-    
-    void *appSupportLibrary = dlopen([appSupportLocation fileSystemRepresentation], RTLD_LAZY);
-    
-    CFStringRef (*copySharedResourcesPreferencesDomainForDomain)(CFStringRef domain) = dlsym(appSupportLibrary, "CPCopySharedResourcesPreferencesDomainForDomain");
-    
-    if (copySharedResourcesPreferencesDomainForDomain) {
-        CFStringRef accessibilityDomain = copySharedResourcesPreferencesDomainForDomain(CFSTR("com.apple.Accessibility"));
-        
-        if (accessibilityDomain) {
-            CFPreferencesSetValue(CFSTR("ApplicationAccessibilityEnabled"), kCFBooleanTrue, accessibilityDomain, kCFPreferencesAnyUser, kCFPreferencesAnyHost);
-            CFRelease(accessibilityDomain);
-        }
-    }
-    
-    NSString* accessibilitySettingsBundleLocation = @"/System/Library/PreferenceBundles/AccessibilitySettings.bundle/AccessibilitySettings";
-    if (simulatorRoot) {
-        accessibilitySettingsBundleLocation = [simulatorRoot stringByAppendingString:accessibilitySettingsBundleLocation];
-    }
-    const char *accessibilitySettingsBundlePath = [accessibilitySettingsBundleLocation fileSystemRepresentation];
-    void* accessibilitySettingsBundle = dlopen(accessibilitySettingsBundlePath, RTLD_LAZY);
-    if (accessibilitySettingsBundle) {
-        Class axSettingsPrefControllerClass = NSClassFromString(@"AccessibilitySettingsController");
-        id axSettingPrefController = [[axSettingsPrefControllerClass alloc] init];
-        [axSettingPrefController setAXInspectorEnabled:@(YES) specifier:nil];
-    }
-}
 
 - (instancetype)initWithFile:(NSString *)file line:(NSInteger)line delegate:(id<KIFTestActorDelegate>)delegate
 {
@@ -77,6 +27,7 @@
         _delegate = delegate;
         _executionBlockTimeout = [[self class] defaultTimeout];
         _animationWaitingTimeout = [[self class] defaultAnimationWaitingTimeout];
+        _animationStabilizationTimeout = [[self class] defaultAnimationStabilizationTimeout];
     }
     return self;
 }
@@ -145,6 +96,7 @@
 #pragma mark Class Methods
 
 static NSTimeInterval KIFTestStepDefaultAnimationWaitingTimeout = 0.5;
+static NSTimeInterval KIFTestStepDefaultAnimationStabilizationTimeout = 0.5;
 static NSTimeInterval KIFTestStepDefaultTimeout = 10.0;
 static NSTimeInterval KIFTestStepDelay = 0.1;
 
@@ -156,6 +108,16 @@ static NSTimeInterval KIFTestStepDelay = 0.1;
 + (void)setDefaultAnimationWaitingTimeout:(NSTimeInterval)newDefaultAnimationWaitingTimeout;
 {
     KIFTestStepDefaultAnimationWaitingTimeout = newDefaultAnimationWaitingTimeout;
+}
+
++ (NSTimeInterval)defaultAnimationStabilizationTimeout
+{
+    return KIFTestStepDefaultAnimationStabilizationTimeout;
+}
+
++ (void)setDefaultAnimationStabilizationTimeout:(NSTimeInterval)newDefaultAnimationStabilizationTimeout;
+{
+    KIFTestStepDefaultAnimationStabilizationTimeout = newDefaultAnimationStabilizationTimeout;
 }
 
 + (NSTimeInterval)defaultTimeout;
@@ -187,6 +149,16 @@ static NSTimeInterval KIFTestStepDelay = 0.1;
     }];
 }
 
+- (void)failWithMessage:(NSString *)message, ...;
+{
+    va_list args;
+    va_start(args, message);
+    NSString *formattedMessage = [[NSString alloc] initWithFormat:message arguments:args];
+    NSError *error = [NSError errorWithDomain:@"KIFTest" code:KIFTestStepResultFailure userInfo:[NSDictionary dictionaryWithObjectsAndKeys:formattedMessage, NSLocalizedDescriptionKey, nil]];
+    [self failWithError:error stopTest:YES];
+    va_end(args);
+}
+
 - (void)failWithError:(NSError *)error stopTest:(BOOL)stopTest
 {
     [self.delegate failWithException:[NSException failureInFile:self.file atLine:(int)self.line withDescription:error.localizedDescription] stopTest:stopTest];
@@ -194,6 +166,15 @@ static NSTimeInterval KIFTestStepDelay = 0.1;
 
 - (void)waitForTimeInterval:(NSTimeInterval)timeInterval
 {
+    [self waitForTimeInterval:timeInterval relativeToAnimationSpeed:NO];
+}
+
+- (void)waitForTimeInterval:(NSTimeInterval)timeInterval relativeToAnimationSpeed:(BOOL)scaleTime
+{
+    if (scaleTime) {
+        timeInterval /= [UIApplication sharedApplication].animationSpeed;
+    }
+    
     NSTimeInterval startTime = [NSDate timeIntervalSinceReferenceDate];
     
     [self runBlock:^KIFTestStepResult(NSError **error) {
@@ -217,6 +198,22 @@ static NSTimeInterval KIFTestStepDelay = 0.1;
     NSException *newException = [NSException failureInFile:self.file atLine:(int)self.line withDescription:@"Failure in child step: %@", firstException.description];
 
     [self.delegate failWithExceptions:[exceptions arrayByAddingObject:newException] stopTest:stop];
+}
+
+@end
+
+@interface UIApplication (KIFTestActorLoading)
+
+@end
+
+@implementation UIApplication (KIFTestActorLoading)
+
++ (void)load
+{
+    @autoreleasepool {
+        NSLog(@"KIFTester loaded");
+        [UIApplication swizzleRunLoop];
+    }
 }
 
 @end

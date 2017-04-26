@@ -4,8 +4,6 @@
 
 A lightweight scrollable UINavigationBar that follows a UIScrollView. This project was inspired by the navigation bar functionality seen in the Chrome, Facebook and Instagram iOS apps.
 
-=======
-
 ![GTScrollNavigationBar Screenshot 1](http://luugiathuy.com/images/GTScrollNavigationBar1.png)&nbsp;![GTScrollNavigationBar Screenshot 2](http://luugiathuy.com/images/GTScrollNavigationBar2.png)
 
 ## Installation

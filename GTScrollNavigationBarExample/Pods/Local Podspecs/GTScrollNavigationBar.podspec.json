@@ -1,6 +1,6 @@
 {
   "name": "GTScrollNavigationBar",
-  "version": "0.2",
+  "version": "0.4",
   "summary": "A scrollable UINavigationBar that follows a UIScrollView",
   "homepage": "https://github.com/luugiathuy/GTScrollNavigationBar",
   "license": "BSD",
@@ -9,12 +9,12 @@
   },
   "social_media_url": "http://twitter.com/luugiathuy",
   "platforms": {
-    "ios": null
+    "ios": "8.0"
   },
   "requires_arc": true,
   "source": {
     "git": "https://github.com/luugiathuy/GTScrollNavigationBar.git",
-    "tag": "0.2"
+    "tag": "0.4"
   },
   "source_files": "GTScrollNavigationBar/*"
 }

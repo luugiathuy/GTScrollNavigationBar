@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A56F7D6D42DD8CA5F5B3EA3A /* libPods-GTScrollNavigationBarExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD79FE5356F24E027023E8A /* libPods-GTScrollNavigationBarExample.a */; };
 		B103F3821864A4D000B03CED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B103F3811864A4D000B03CED /* Foundation.framework */; };
 		B103F3841864A4D000B03CED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B103F3831864A4D000B03CED /* CoreGraphics.framework */; };
 		B103F3861864A4D000B03CED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B103F3851864A4D000B03CED /* UIKit.framework */; };
@@ -18,8 +17,9 @@
 		B103F3BC1865208500B03CED /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B103F3BB1865208500B03CED /* DemoTableViewController.m */; };
 		B13D79D01B65323700A7273B /* GTScrollNavigationBarSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B13D79CF1B65323700A7273B /* GTScrollNavigationBarSpec.m */; };
 		B1714BAB186860F7006577EF /* DemoWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1714BAA186860F7006577EF /* DemoWebViewController.m */; };
-		B17A2CA71BAD1DFD00029028 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B17A2CA61BAD1DFD00029028 /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
-		BD665F78D6C5126B7AE2BCC7 /* libPods-GTScrollNavigationBarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 248CE2268EFED83AE051851F /* libPods-GTScrollNavigationBarTests.a */; };
+		B17A2CA71BAD1DFD00029028 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B17A2CA61BAD1DFD00029028 /* Launch Screen.storyboard */; };
+		B46CE2908146E371527484B5 /* libPods-GTScrollNavigationBarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4241B7C1DFD9EAB10BC234D1 /* libPods-GTScrollNavigationBarTests.a */; };
+		F74C70A11B5CB6515FCD2670 /* libPods-GTScrollNavigationBarExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 430CAA1522C15595B5B44D75 /* libPods-GTScrollNavigationBarExample.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,10 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		20510C7EC3E5C67EAC492339 /* Pods-GTScrollNavigationBarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GTScrollNavigationBarTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GTScrollNavigationBarTests/Pods-GTScrollNavigationBarTests.debug.xcconfig"; sourceTree = "<group>"; };
-		248CE2268EFED83AE051851F /* libPods-GTScrollNavigationBarTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GTScrollNavigationBarTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CD79FE5356F24E027023E8A /* libPods-GTScrollNavigationBarExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GTScrollNavigationBarExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A81ABE8B7F838E34722B4089 /* Pods-GTScrollNavigationBarExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GTScrollNavigationBarExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GTScrollNavigationBarExample/Pods-GTScrollNavigationBarExample.debug.xcconfig"; sourceTree = "<group>"; };
+		4241B7C1DFD9EAB10BC234D1 /* libPods-GTScrollNavigationBarTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GTScrollNavigationBarTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		430CAA1522C15595B5B44D75 /* libPods-GTScrollNavigationBarExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GTScrollNavigationBarExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F95023BE87E6936E0EECC29 /* Pods-GTScrollNavigationBarExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GTScrollNavigationBarExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GTScrollNavigationBarExample/Pods-GTScrollNavigationBarExample.debug.xcconfig"; sourceTree = "<group>"; };
+		6C0A0FE98ACEC7EE75F826F6 /* Pods-GTScrollNavigationBarExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GTScrollNavigationBarExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-GTScrollNavigationBarExample/Pods-GTScrollNavigationBarExample.release.xcconfig"; sourceTree = "<group>"; };
 		B103F37E1864A4D000B03CED /* GTScrollNavigationBarExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTScrollNavigationBarExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B103F3811864A4D000B03CED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B103F3831864A4D000B03CED /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -57,8 +57,8 @@
 		B1714BA9186860F7006577EF /* DemoWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoWebViewController.h; sourceTree = "<group>"; };
 		B1714BAA186860F7006577EF /* DemoWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoWebViewController.m; sourceTree = "<group>"; };
 		B17A2CA61BAD1DFD00029028 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		BF390B836BE7EDF3CFFF63FA /* Pods-GTScrollNavigationBarExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GTScrollNavigationBarExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-GTScrollNavigationBarExample/Pods-GTScrollNavigationBarExample.release.xcconfig"; sourceTree = "<group>"; };
-		CFE0D86DEC3C1B37FFCD3831 /* Pods-GTScrollNavigationBarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GTScrollNavigationBarTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GTScrollNavigationBarTests/Pods-GTScrollNavigationBarTests.release.xcconfig"; sourceTree = "<group>"; };
+		DA3E03234DB88293090D724F /* Pods-GTScrollNavigationBarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GTScrollNavigationBarTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GTScrollNavigationBarTests/Pods-GTScrollNavigationBarTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F517981D23666E838F75B720 /* Pods-GTScrollNavigationBarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GTScrollNavigationBarTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GTScrollNavigationBarTests/Pods-GTScrollNavigationBarTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +69,7 @@
 				B103F3841864A4D000B03CED /* CoreGraphics.framework in Frameworks */,
 				B103F3861864A4D000B03CED /* UIKit.framework in Frameworks */,
 				B103F3821864A4D000B03CED /* Foundation.framework in Frameworks */,
-				A56F7D6D42DD8CA5F5B3EA3A /* libPods-GTScrollNavigationBarExample.a in Frameworks */,
+				F74C70A11B5CB6515FCD2670 /* libPods-GTScrollNavigationBarExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,20 +77,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD665F78D6C5126B7AE2BCC7 /* libPods-GTScrollNavigationBarTests.a in Frameworks */,
+				B46CE2908146E371527484B5 /* libPods-GTScrollNavigationBarTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4BFB28F283F4A85BB8BE0F15 /* Pods */ = {
+		711DBAC3E93FA74F2623E860 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A81ABE8B7F838E34722B4089 /* Pods-GTScrollNavigationBarExample.debug.xcconfig */,
-				BF390B836BE7EDF3CFFF63FA /* Pods-GTScrollNavigationBarExample.release.xcconfig */,
-				20510C7EC3E5C67EAC492339 /* Pods-GTScrollNavigationBarTests.debug.xcconfig */,
-				CFE0D86DEC3C1B37FFCD3831 /* Pods-GTScrollNavigationBarTests.release.xcconfig */,
+				5F95023BE87E6936E0EECC29 /* Pods-GTScrollNavigationBarExample.debug.xcconfig */,
+				6C0A0FE98ACEC7EE75F826F6 /* Pods-GTScrollNavigationBarExample.release.xcconfig */,
+				DA3E03234DB88293090D724F /* Pods-GTScrollNavigationBarTests.debug.xcconfig */,
+				F517981D23666E838F75B720 /* Pods-GTScrollNavigationBarTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -102,7 +102,7 @@
 				B13D79C51B6524D800A7273B /* GTScrollNavigationBarTests */,
 				B103F3801864A4D000B03CED /* Frameworks */,
 				B103F37F1864A4D000B03CED /* Products */,
-				4BFB28F283F4A85BB8BE0F15 /* Pods */,
+				711DBAC3E93FA74F2623E860 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,8 +122,8 @@
 				B103F3831864A4D000B03CED /* CoreGraphics.framework */,
 				B103F3851864A4D000B03CED /* UIKit.framework */,
 				B103F39A1864A4D000B03CED /* XCTest.framework */,
-				2CD79FE5356F24E027023E8A /* libPods-GTScrollNavigationBarExample.a */,
-				248CE2268EFED83AE051851F /* libPods-GTScrollNavigationBarTests.a */,
+				430CAA1522C15595B5B44D75 /* libPods-GTScrollNavigationBarExample.a */,
+				4241B7C1DFD9EAB10BC234D1 /* libPods-GTScrollNavigationBarTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -179,11 +179,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B103F3AA1864A4D000B03CED /* Build configuration list for PBXNativeTarget "GTScrollNavigationBarExample" */;
 			buildPhases = (
-				CEAC6F0CC1A6048710A5026F /* Check Pods Manifest.lock */,
+				A3B71E122072F12A10563E83 /* [CP] Check Pods Manifest.lock */,
 				B103F37A1864A4D000B03CED /* Sources */,
 				B103F37B1864A4D000B03CED /* Frameworks */,
 				B103F37C1864A4D000B03CED /* Resources */,
-				BC02899B6459AAA7C16B4317 /* Copy Pods Resources */,
+				7B68876947BBEB82FCF0F917 /* [CP] Embed Pods Frameworks */,
+				DBE74C39886BE624AAE9847C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -198,11 +199,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B13D79CE1B6524D800A7273B /* Build configuration list for PBXNativeTarget "GTScrollNavigationBarTests" */;
 			buildPhases = (
-				92FB27F7AA47725063FAC5D2 /* Check Pods Manifest.lock */,
+				916C3948B28C1E04C10F32B9 /* [CP] Check Pods Manifest.lock */,
 				B13D79C01B6524D800A7273B /* Sources */,
 				B13D79C11B6524D800A7273B /* Frameworks */,
 				B13D79C21B6524D800A7273B /* Resources */,
-				353467A1CB3F93E449E0B802 /* Copy Pods Resources */,
+				52D3DF9368BA1328DA2B1573 /* [CP] Embed Pods Frameworks */,
+				F94A04868FEDCA01E4C90008 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -221,7 +223,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = GT;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Luu Gia Thuy";
 				TargetAttributes = {
 					B13D79C31B6524D800A7273B = {
@@ -269,44 +271,74 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		353467A1CB3F93E449E0B802 /* Copy Pods Resources */ = {
+		52D3DF9368BA1328DA2B1573 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GTScrollNavigationBarTests/Pods-GTScrollNavigationBarTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GTScrollNavigationBarTests/Pods-GTScrollNavigationBarTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		92FB27F7AA47725063FAC5D2 /* Check Pods Manifest.lock */ = {
+		7B68876947BBEB82FCF0F917 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GTScrollNavigationBarExample/Pods-GTScrollNavigationBarExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BC02899B6459AAA7C16B4317 /* Copy Pods Resources */ = {
+		916C3948B28C1E04C10F32B9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A3B71E122072F12A10563E83 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DBE74C39886BE624AAE9847C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,19 +346,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GTScrollNavigationBarExample/Pods-GTScrollNavigationBarExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CEAC6F0CC1A6048710A5026F /* Check Pods Manifest.lock */ = {
+		F94A04868FEDCA01E4C90008 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GTScrollNavigationBarTests/Pods-GTScrollNavigationBarTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -386,15 +418,20 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Gia Thuy Luu (K95WVA6K85)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -426,14 +463,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Gia Thuy Luu (K95WVA6K85)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -448,7 +490,7 @@
 		};
 		B103F3AB1864A4D000B03CED /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A81ABE8B7F838E34722B4089 /* Pods-GTScrollNavigationBarExample.debug.xcconfig */;
+			baseConfigurationReference = 5F95023BE87E6936E0EECC29 /* Pods-GTScrollNavigationBarExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -465,7 +507,7 @@
 		};
 		B103F3AC1864A4D000B03CED /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF390B836BE7EDF3CFFF63FA /* Pods-GTScrollNavigationBarExample.release.xcconfig */;
+			baseConfigurationReference = 6C0A0FE98ACEC7EE75F826F6 /* Pods-GTScrollNavigationBarExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -482,14 +524,14 @@
 		};
 		B13D79CC1B6524D800A7273B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20510C7EC3E5C67EAC492339 /* Pods-GTScrollNavigationBarTests.debug.xcconfig */;
+			baseConfigurationReference = DA3E03234DB88293090D724F /* Pods-GTScrollNavigationBarTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -508,7 +550,7 @@
 		};
 		B13D79CD1B6524D800A7273B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CFE0D86DEC3C1B37FFCD3831 /* Pods-GTScrollNavigationBarTests.release.xcconfig */;
+			baseConfigurationReference = F517981D23666E838F75B720 /* Pods-GTScrollNavigationBarTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -516,7 +558,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = GTScrollNavigationBarTests/Info.plist;
