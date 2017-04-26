@@ -46,6 +46,7 @@ static int const kTotalSections = 10;
 //    self.navigationController.navigationBar.translucent = NO;
     
     self.navigationItem.title = @"DemoScrollNavigationBar";
+    self.navigationItem.accessibilityLabel = @"UINavigationItemView";
     self.navigationController.scrollNavigationBar.scrollView = self.tableView;
 }
 

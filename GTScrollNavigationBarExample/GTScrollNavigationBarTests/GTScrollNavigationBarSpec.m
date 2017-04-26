@@ -22,8 +22,8 @@ describe(@"GTScrollNavigationBar", ^{
     __block UITableView *tableView;
 
     beforeAll(^{
-        UIView *view = [tester waitForViewWithAccessibilityLabel:@"DemoScrollNavigationBar"].superview;
-        XCTAssertTrue([view isKindOfClass:[UINavigationBar class]], @"Found view is not a GTScrollNavigationBar instance!");
+        UIView *view = [tester waitForViewWithAccessibilityLabel:@"UINavigationItemView"].superview;
+        XCTAssertTrue([view isKindOfClass:[UINavigationBar class]], @"Found view is not a UINavigationBar instance!");
         navigationBar = (GTScrollNavigationBar *)view;
         
         view = [tester waitForViewWithAccessibilityLabel:@"DemoTableView"];

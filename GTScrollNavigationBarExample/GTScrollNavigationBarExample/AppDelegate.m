@@ -20,7 +20,6 @@
     self.viewController = [[DemoTableViewController alloc] initWithStyle:UITableViewStylePlain];
     self.navController = [[UINavigationController alloc] initWithNavigationBarClass:[GTScrollNavigationBar class] toolbarClass:nil];
     [self.navController setViewControllers:@[self.viewController] animated:NO];
-    self.navController.navigationBar.accessibilityLabel = @"DemoScrollNavigationBar";
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
     return YES;
