@@ -42,6 +42,7 @@
                                                               action:@selector(handlePan:)];
     self.panGesture.delegate = self;
     self.panGesture.cancelsTouchesInView = NO;
+    self.adjustsScrollView = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationDidBecomeActive)
@@ -216,7 +217,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     self.frame = frame;
     
 
-    if (self.scrollView) {
+    if (self.scrollView && self.adjustsScrollView) {
         CGRect parentViewFrame = self.scrollView.superview.frame;
         parentViewFrame.origin.y += offsetY;
         parentViewFrame.size.height -= offsetY;
