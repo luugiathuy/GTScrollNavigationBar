@@ -221,6 +221,9 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         parentViewFrame.origin.y += offsetY;
         parentViewFrame.size.height -= offsetY;
         self.scrollView.superview.frame = parentViewFrame;
+        if (animated) {
+            self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y - offsetY);
+        }
     }
     
     if (animated) {
